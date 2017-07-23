@@ -12,7 +12,6 @@ namespace UCEP.Models
         {
 
         }
-        public  DbSet<FsTemplate> FsTemplate { get; set; }
         public DbSet<FsCatalogue> FsCatalogue { get; set; }
     }
 }

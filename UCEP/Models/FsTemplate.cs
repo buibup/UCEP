@@ -6,7 +6,7 @@ using System.Web;
 
 namespace UCEP.Models
 {
-    public class FsTemplate:BaseEntity
+    public class FsTemplate
     {
         public DateTime UseDate { get; set; }
         [MaxLength(50)]
