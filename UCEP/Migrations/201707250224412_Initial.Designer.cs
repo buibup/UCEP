@@ -13,7 +13,7 @@ namespace UCEP.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201707231730346_Initial"; }
+            get { return "201707250224412_Initial"; }
         }
         
         string IMigrationMetadata.Source

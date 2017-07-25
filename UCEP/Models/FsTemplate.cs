@@ -20,4 +20,6 @@ namespace UCEP.Models
         public string Unit { get; set; }
         public decimal PriceTotal { get; set; }
     }
+
+
 }

@@ -19,7 +19,7 @@ namespace UCEP.Models
         Status,
         ApprovalDate
     }
-    public class FsCatalogue
+    public class FsCatalogue:BaseEntity
     {
         [Required]
         [MaxLength(20)]
@@ -27,18 +27,20 @@ namespace UCEP.Models
         [Required]
         [MaxLength(50)]
         public string FSCodeNIEMS { get; set; }
-        [Key]
+        [Required]
         [MaxLength(50)]
         public string FSCodeHos { get; set; }
         [Required]
         [MaxLength(10)]
         public string Category { get; set; }
+        [Required]
         public string Meaning { get; set; }
         [Required]
         [MaxLength(50)]
         public string Unit { get; set; }
         [Required]
         public decimal Price { get; set; }
+        [Required]
         public DateTime? EffectiveDate { get; set; }
         [Required]
         [MaxLength(50)]

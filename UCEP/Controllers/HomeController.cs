@@ -46,7 +46,14 @@ namespace UCEP.Controllers
                         {
                             csvTable.Load(csvReader);
                         }
+
+                        // Convert datatable to model
                         var FsCatalogues = Helper.DTFsCatalogueToModel(csvTable);
+
+                        // truncate table
+                        db.Database.ExecuteSqlCommand("TRUNCATE TABLE [FsCatalogues]");
+
+                        // save models to database
                         db.FsCatalogue.AddRange(FsCatalogues);
                         db.SaveChanges();
 
