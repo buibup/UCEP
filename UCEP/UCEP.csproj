@@ -162,9 +162,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707250224412_Initial.cs" />
-    <Compile Include="Migrations\201707250224412_Initial.Designer.cs">
-      <DependentUpon>201707250224412_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201707281651249_initial.cs" />
+    <Compile Include="Migrations\201707281651249_initial.Designer.cs">
+      <DependentUpon>201707281651249_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707281654206_edit dt to dt2.cs" />
+    <Compile Include="Migrations\201707281654206_edit dt to dt2.Designer.cs">
+      <DependentUpon>201707281654206_edit dt to dt2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
@@ -230,8 +234,11 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707250224412_Initial.resx">
-      <DependentUpon>201707250224412_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707281651249_initial.resx">
+      <DependentUpon>201707281651249_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707281654206_edit dt to dt2.resx">
+      <DependentUpon>201707281654206_edit dt to dt2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
