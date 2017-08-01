@@ -55,7 +55,7 @@ namespace UCEP.Common
             var strDtm = Convert.ToDateTime($"{dte} {tme}").ToString("dd/MM/yyyy HH:mm:ss");
             IFormatProvider culture = new System.Globalization.CultureInfo("fr-FR", true);
 
-            var dtm = DateTime.Parse(strDtm, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+            var dtm = DateTime.Parse(strDtm, culture, System.Globalization.DateTimeStyles.AssumeUniversal);
 
             return dtm;
         }
@@ -79,17 +79,34 @@ namespace UCEP.Common
                 string hostCode = row["HospitalCode"].ToString();
 
                 var item = db.FsCatalogues.Where(m => m.FSCodeHos == hostCode).Select(m => new { m.FSCodeNIEMS, m.Category, m.Unit }).SingleOrDefault();
-                decimal price;
+                decimal price=0;
+
+                var d = Convert.ToDateTime(row["OEORI_SttDat"].ToString());
+                var t = Convert.ToDateTime(row["OEORI_SttTim"].ToString());
+
+                var useDate = $"{d.Year}-{d.ToString("MM-dd")}";
+                var useTime = $"{t.ToString("HH:mm:ss")}";
+
+                string FSCodeNIEMS = string.Empty;
+                string Category = string.Empty;
+                string Unit = string.Empty;
+
+                if (item != null)
+                {
+                    FSCodeNIEMS = item.FSCodeNIEMS;
+                    Category = item.Category;
+                    Unit = item.Unit;
+                }
 
                 FsTemplate fs = new FsTemplate()
                 {
 
-                    UseDate = StringToDateTime(row["OEORI_SttDat"].ToString(), row["OEORI_SttTim"].ToString()).ToString("yyyy-MM-dd HH:mm:ss"),
-                    FSCodeOrTMTCode = item.FSCodeNIEMS,
+                    UseDate = $"{useDate} {useTime}",
+                    FSCodeOrTMTCode = FSCodeNIEMS,
                     HospitalCode = hostCode,
-                    Category = item.Category,
+                    Category = Category,
                     Mean = row["Mean"].ToString(),
-                    Unit = item.Unit,
+                    Unit = Unit,
                     PriceTotal = decimal.TryParse(row["PriceTotal"].ToString(), out price) ? price : 0
                 };
                 result.Add(fs);

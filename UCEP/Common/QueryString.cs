@@ -38,8 +38,8 @@ namespace UCEP.Common
 
             ";
 
-            var dFrom = dtmFrom.ToString("yyyy-MM-dd HH:mm:ss");
-            var dTo = dtmTo.ToString("yyyy-MM-dd HH:mm:ss");
+            var dFrom = $"{dtmFrom.Year}-{dtmFrom.ToString("MM-dd HH:mm:ss")}"; //dtmFrom.ToString("yyyy-MM-dd HH:mm:ss");
+            var dTo = $"{dtmTo.Year}-{dtmTo.ToString("MM-dd HH:mm:ss")}"; //dtmTo.ToString("yyyy-MM-dd HH:mm:ss");
 
             Dictionary<string, string> dic = new Dictionary<string, string>();
             dic.Add("PAPMI_NO", hn);
