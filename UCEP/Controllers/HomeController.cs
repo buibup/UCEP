@@ -1,4 +1,5 @@
-﻿using LINQtoCSV;
+﻿using CRMWebApi.DA;
+using LINQtoCSV;
 using LumenWorks.Framework.IO.Csv;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using UCEP.Common;
 using UCEP.Models;
+using UCEP.ViewModels;
 
 namespace UCEP.Controllers
 {
@@ -54,7 +56,7 @@ namespace UCEP.Controllers
                         db.Database.ExecuteSqlCommand("TRUNCATE TABLE [FsCatalogues]");
 
                         // save models to database
-                        db.FsCatalogue.AddRange(FsCatalogues);
+                        db.FsCatalogues.AddRange(FsCatalogues);
                         db.SaveChanges();
 
                         
@@ -74,6 +76,30 @@ namespace UCEP.Controllers
             return View();
         }
 
+        public ActionResult ExportCSV()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ExportCSV(PatientModel pt)
+        {
+            string hn = pt.HN;
+            string dte = pt.Date;
+            string tme = pt.Time;
+
+            var dtmFrom = Helper.StringToDateTime(dte, tme);
+            var dtmTo = dtmFrom.AddHours(72);
+
+            var query = QueryString.GetPatientDetialByHn(hn, dtmFrom, dtmTo);
+
+            var dt = InterSystemsDA.DTBindDataCommandWihDictionary(query.Item1, Constants.Chache89, query.Item2);
+
+            var data = Helper.DTToFsTemplateList(dt);
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult UploadCsv(HttpPostedFileBase attachmentcsv)
         {
@@ -85,9 +111,9 @@ namespace UCEP.Controllers
             CsvContext csvContext = new CsvContext();
             StreamReader streamReader = new StreamReader(attachmentcsv.InputStream);
             IEnumerable<FsCatalogue> list = csvContext.Read<FsCatalogue>(streamReader, csvFileDescription);
-            db.FsCatalogue.AddRange(list);
+            db.FsCatalogues.AddRange(list);
             db.SaveChanges();
             return Redirect("GetAllEmployeeData");
         }
     }
-}
+};

@@ -8,7 +8,7 @@ namespace UCEP.Models
 {
     public class FsTemplate
     {
-        public DateTime UseDate { get; set; }
+        public string UseDate { get; set; }
         [MaxLength(50)]
         public string FSCodeOrTMTCode { get; set; }
         [MaxLength(50)]

@@ -3,7 +3,7 @@ namespace UCEP.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -19,7 +19,7 @@ namespace UCEP.Migrations
                         Meaning = c.String(nullable: false),
                         Unit = c.String(nullable: false, maxLength: 50),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        EffectiveDate = c.DateTime(nullable: false),
+                        EffectiveDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                         Status = c.String(nullable: false, maxLength: 50),
                         ApprovalDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
                     })

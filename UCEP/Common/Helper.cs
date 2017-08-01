@@ -10,7 +10,7 @@ namespace UCEP.Common
 {
     public class Helper
     {
-        
+        private static UCEPDbContext db = new UCEPDbContext();
         public static List<FsCatalogue> DTFsCatalogueToModel(DataTable dt)
         {
             List<FsCatalogue> result = new List<FsCatalogue>();
@@ -45,6 +45,54 @@ namespace UCEP.Common
                     ApprovalDate = approvalDate
                 };
                 result.Add(model);
+            }
+
+            return result;
+        }
+
+        public static DateTime StringToDateTime(string dte, string tme)
+        {
+            var strDtm = Convert.ToDateTime($"{dte} {tme}").ToString("dd/MM/yyyy HH:mm:ss");
+            IFormatProvider culture = new System.Globalization.CultureInfo("fr-FR", true);
+
+            var dtm = DateTime.Parse(strDtm, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+
+            return dtm;
+        }
+
+        public static DateTime StringToDateTime(string datetime)
+        {
+            var strDtm = Convert.ToDateTime($"{datetime}").ToString("dd/MM/yyyy HH:mm:ss");
+            IFormatProvider culture = new System.Globalization.CultureInfo("fr-FR", true);
+
+            var dtm = DateTime.Parse(strDtm, culture, System.Globalization.DateTimeStyles.AssumeLocal);
+
+            return dtm;
+        }
+
+        public static List<FsTemplate> DTToFsTemplateList(DataTable dt)
+        {
+            List<FsTemplate> result = new List<FsTemplate>();
+
+            foreach(DataRow row in dt.Rows)
+            {
+                string hostCode = row["HospitalCode"].ToString();
+
+                var item = db.FsCatalogues.Where(m => m.FSCodeHos == hostCode).Select(m => new { m.FSCodeNIEMS, m.Category, m.Unit }).SingleOrDefault();
+                decimal price;
+
+                FsTemplate fs = new FsTemplate()
+                {
+
+                    UseDate = StringToDateTime(row["OEORI_SttDat"].ToString(), row["OEORI_SttTim"].ToString()).ToString("yyyy-MM-dd HH:mm:ss"),
+                    FSCodeOrTMTCode = item.FSCodeNIEMS,
+                    HospitalCode = hostCode,
+                    Category = item.Category,
+                    Mean = row["Mean"].ToString(),
+                    Unit = item.Unit,
+                    PriceTotal = decimal.TryParse(row["PriceTotal"].ToString(), out price) ? price : 0
+                };
+                result.Add(fs);
             }
 
             return result;

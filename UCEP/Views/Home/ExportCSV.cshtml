@@ -1,0 +1,28 @@
+﻿@model UCEP.ViewModels.PatientModel
+
+@{
+    ViewBag.Title = "ExportCSV";
+}
+
+<h2>ExportCSV</h2>
+
+
+@using (Html.BeginForm("ExportCSV", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label for="hn">HN:</label>
+        @*<input type="text" class="form-control" id="hn">*@
+        @Html.TextBoxFor(m => m.HN)
+    </div>
+    <div class="form-group">
+        <label for="date">Date:</label>
+        @*<input type="text" class="form-control" id="date" placeholder="yyyy-MM-dd">*@
+        @Html.TextBoxFor(m => m.Date)
+    </div>
+    <div class="form-group">
+        <label for="time">Time:</label>
+        @*<input type="text" class="form-control" id="time" placeholder="hh:mm:ss">*@
+        @Html.TextBoxFor(m => m.Time)
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+}
