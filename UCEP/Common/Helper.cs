@@ -55,7 +55,7 @@ namespace UCEP.Common
             var strDtm = Convert.ToDateTime($"{dte} {tme}").ToString("dd/MM/yyyy HH:mm:ss");
             IFormatProvider culture = new System.Globalization.CultureInfo("fr-FR", true);
 
-            var dtm = DateTime.Parse(strDtm, culture, System.Globalization.DateTimeStyles.AssumeUniversal);
+            var dtm = DateTime.Parse(strDtm, culture, System.Globalization.DateTimeStyles.AssumeLocal);
 
             return dtm;
         }
@@ -111,6 +111,8 @@ namespace UCEP.Common
                 };
                 result.Add(fs);
             }
+
+            result = result.OrderBy(a => string.IsNullOrEmpty(a.UseDate) ? (DateTime?)null : DateTime.ParseExact(a.UseDate, "yyyy-MM-dd HH:mm:ss", null)).ToList();
 
             return result;
         }

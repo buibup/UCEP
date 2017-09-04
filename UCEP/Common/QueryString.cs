@@ -34,8 +34,6 @@ namespace UCEP.Common
 	                    ) <= TO_TIMESTAMP( ? ,'YYYY-MM-DD HH24:MI:SS')
 	                )
 
-            ORDER BY ""Vw_BillDetailAc"".""OEORI_SttDat"",""Vw_BillDetailAc"".""OEORI_SttTim""
-
             ";
 
             var dFrom = $"{dtmFrom.Year}-{dtmFrom.ToString("MM-dd HH:mm:ss")}"; //dtmFrom.ToString("yyyy-MM-dd HH:mm:ss");

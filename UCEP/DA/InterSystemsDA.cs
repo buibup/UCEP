@@ -29,6 +29,7 @@ namespace CRMWebApi.DA
                         dt.Load(reader);
                     }
                 }
+                con.Close();
             }
 
             return dt;
