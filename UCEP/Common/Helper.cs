@@ -95,7 +95,6 @@ namespace UCEP.Common
                 {
                     FSCodeNIEMS = item.FSCodeNIEMS;
                     Category = item.Category;
-                    Unit = item.Unit;
                 }
 
                 FsTemplate fs = new FsTemplate()
@@ -106,7 +105,7 @@ namespace UCEP.Common
                     HospitalCode = hostCode,
                     Category = Category,
                     Mean = row["Mean"].ToString(),
-                    Unit = Unit,
+                    Unit = row["Unit"].ToString(),
                     PriceTotal = decimal.TryParse(row["PriceTotal"].ToString(), out price) ? price : 0
                 };
                 result.Add(fs);
