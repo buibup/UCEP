@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using UCEP.Models;
 
 namespace UCEP.DataAccess
@@ -27,6 +28,36 @@ namespace UCEP.DataAccess
       }
     }
 
+    public void CreateFsCatalogue(FsCatalogue model)
+    {
+      throw new NotImplementedException();
+    }
+
+    public FsCatalogue DeleteFsCatalogue(int id)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void DeleteFsCatalogue(int id, FormCollection collection)
+    {
+      throw new NotImplementedException();
+    }
+
+    public FsCatalogue EditFsCatalogue(int id)
+    {
+      throw new NotImplementedException();
+    }
+
+    public void EditFsCatalogue(FsCatalogue model)
+    {
+      throw new NotImplementedException();
+    }
+
+    public List<FsCatalogue> GetAllFsCatalogue()
+    {
+      throw new NotImplementedException();
+    }
+
     public FsCatalogue GetFsCatalogue(string FSCodeHos)
     {
       var item = db.FsCatalogues.Where(m => m.FSCodeHos == FSCodeHos).Select(m => new { m.HospitalCode, m.FSCodeNIEMS, m.FSCodeHos, m.Category, m.Meaning, m.Unit, m.Price, m.EffectiveDate, m.Status, m.ApprovalDate }).SingleOrDefault();
@@ -48,6 +79,11 @@ namespace UCEP.DataAccess
       }
 
       return data;
+    }
+
+    public FsCatalogue GetFsCatalogue(int id)
+    {
+      throw new NotImplementedException();
     }
   }
 }
