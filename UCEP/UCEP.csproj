@@ -170,6 +170,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UCEPController.cs" />
+    <Compile Include="DataAccess\DbQuery.cs" />
     <Compile Include="DataAccess\IDataConnection.cs" />
     <Compile Include="DataAccess\MySqlConnector.cs" />
     <Compile Include="DataAccess\SqlConnector.cs" />
@@ -252,6 +253,10 @@
     <Content Include="Views\Home\Upload.cshtml" />
     <Content Include="Views\Home\ExportCSV.cshtml" />
     <Content Include="Views\UCEP\Index.cshtml" />
+    <Content Include="Views\UCEP\Details.cshtml" />
+    <Content Include="Views\UCEP\Create.cshtml" />
+    <Content Include="Views\UCEP\Delete.cshtml" />
+    <Content Include="Views\UCEP\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
