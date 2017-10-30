@@ -32,8 +32,7 @@ namespace UCEP.Common
 
         effectiveDate = DateTime.Parse(effDate, culture, System.Globalization.DateTimeStyles.AssumeLocal);
         approvalDate = DateTime.Parse(appDate, culture, System.Globalization.DateTimeStyles.AssumeLocal);
-        //effectiveDate = DateTime.TryParse(row[(int)FsCatalogueEnum.EffectiveDate].ToString(), out effectiveDate)? effectiveDate : Convert.ToDateTime(row[(int)FsCatalogueEnum.EffectiveDate]);
-        //approvalDate = DateTime.TryParse(row[(int)FsCatalogueEnum.ApprovalDate].ToString(), out approvalDate)? approvalDate : Convert.ToDateTime(row[(int)FsCatalogueEnum.ApprovalDate]);
+
         model = new FsCatalogue()
         {
           HospitalCode = row[(int)FsCatalogueEnum.HospitalCode].ToString(),
@@ -81,7 +80,9 @@ namespace UCEP.Common
       {
         string hostCode = row["HospitalCode"].ToString();
 
-        var item = db.FsCatalogues.Where(m => m.FSCodeHos == hostCode).Select(m => new { m.FSCodeNIEMS, m.Category, m.Unit }).SingleOrDefault();
+        //var item = db.FsCatalogues.Where(m => m.FSCodeHos == hostCode).Select(m => new { m.FSCodeNIEMS, m.Category, m.Unit }).SingleOrDefault();
+        var item = GlobalConfig.Connection.GetFsCatalogue(hostCode);
+
         decimal price = 0;
 
         var d = Convert.ToDateTime(row["OEORI_SttDat"].ToString());

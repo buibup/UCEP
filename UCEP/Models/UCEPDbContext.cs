@@ -2,12 +2,12 @@ using System.Data.Entity;
 
 namespace UCEP.Models
 {
-  public class UCEPDbContext:DbContext
+  public class UCEPDbContext : DbContext
+  {
+    public UCEPDbContext() : base("UCEPDBConnectionString")
     {
-        public UCEPDbContext():base("UCEPDBConnectionString")
-        {
 
-        }
-        public DbSet<FsCatalogue> FsCatalogues { get; set; }
     }
+    public DbSet<FsCatalogue> FsCatalogues { get; set; }
+  }
 }
