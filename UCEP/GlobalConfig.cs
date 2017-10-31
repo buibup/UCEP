@@ -4,12 +4,15 @@ using System.Configuration;
 using System.Linq;
 using System.Web;
 using UCEP.DataAccess;
+using UCEP.Models;
 using static UCEP.Enums;
 
 namespace UCEP
 {
     public class GlobalConfig
     {
+
+        public static List<FsTemplate> FsTemplateList { get; set; } = new List<FsTemplate>();
         public static IDataConnection Connection { get; private set; }
 
         public static void InitializeConnections(DatabaseType db)
