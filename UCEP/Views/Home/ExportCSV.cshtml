@@ -1,4 +1,4 @@
-﻿@model UCEP.ViewModels.PatientModel
+@model UCEP.ViewModels.PatientModel
 
 @{
     ViewBag.Title = "ExportCSV";
@@ -9,20 +9,26 @@
 
 @using (Html.BeginForm("ExportCSV", "Home", FormMethod.Post))
 {
-    <div class="form-group">
-        <label for="hn">HN:</label>
-        @*<input type="text" class="form-control" id="hn">*@
-        @Html.TextBoxFor(m => m.HN)
-    </div>
-    <div class="form-group">
-        <label for="date">Date:</label>
-        @*<input type="text" class="form-control" id="date" placeholder="yyyy-MM-dd">*@
-        @Html.TextBoxFor(m => m.Date)
-    </div>
-    <div class="form-group">
-        <label for="time">Time:</label>
-        @*<input type="text" class="form-control" id="time" placeholder="hh:mm:ss">*@
-        @Html.TextBoxFor(m => m.Time)
-    </div>
+
+  <div class="form-group">
+    <label for="hn">HN:</label>
+    @*<input type="text" class="form-control" id="hn">*@
+    @Html.EditorFor(m => m.HN, new { htmlAttributes = new { @class = "form-control", placeholder = "Input Hn" } })
+    @*@Html.TextBoxFor(m => m.HN)*@
+  </div>
+  <div class="form-group">
+    <label for="date">Date:</label>
+    @*<input type="text" class="form-control" id="date" placeholder="yyyy-MM-dd">*@
+    @Html.EditorFor(m => m.Date, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy-MM-dd" } })
+    @*@Html.TextBoxFor(m => m.Date)*@
+  </div>
+  <div class="form-group">
+    <label for="time">Time:</label>
+    @*<input type="text" class="form-control" id="time" placeholder="hh:mm:ss">*@
+    @Html.EditorFor(m => m.Time, new { htmlAttributes = new { @class = "form-control", placeholder = "hh:mm:ss" } })
+    @*@Html.TextBoxFor(m => m.Time)*@
+  </div>
+
     <button type="submit" class="btn btn-default">Submit</button>
 }
+

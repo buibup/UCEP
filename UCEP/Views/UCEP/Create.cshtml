@@ -1,4 +1,4 @@
-﻿@model UCEP.Models.FsCatalogue
+@model UCEP.Models.FsCatalogue
 
 @{
     ViewBag.Title = "Create";
@@ -74,7 +74,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.EffectiveDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.EffectiveDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.EffectiveDate, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy-MM-dd" } })
                 @Html.ValidationMessageFor(model => model.EffectiveDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -90,7 +90,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ApprovalDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ApprovalDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ApprovalDate, new { htmlAttributes = new { @class = "form-control", placeholder = "yyyy-MM-dd hh:mm:ss" } })
                 @Html.ValidationMessageFor(model => model.ApprovalDate, "", new { @class = "text-danger" })
             </div>
         </div>

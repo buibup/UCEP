@@ -50,9 +50,9 @@ namespace UCEP.Controllers
           if (upload.FileName.EndsWith(".csv"))
           {
             Stream stream = upload.InputStream;
+           
             DataTable csvTable = new DataTable();
-            using (CsvReader csvReader =
-                new CsvReader(new StreamReader(stream), true))
+            using (CsvReader csvReader = new CsvReader(new StreamReader(stream, Encoding.UTF8, false),  true))
             {
               csvTable.Load(csvReader);
             }
@@ -63,7 +63,7 @@ namespace UCEP.Controllers
             // save models to database
             GlobalConfig.Connection.AddFsCatalogues(FsCatalogues);
 
-            return View(csvTable);
+            return RedirectToAction("Index", "UCEP");
           }
           else
           {
