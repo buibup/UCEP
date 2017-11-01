@@ -5,39 +5,40 @@
 
 @using (Html.BeginForm("Upload", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
+  @Html.AntiForgeryToken()
+  @Html.ValidationSummary()
+
+  <div class="form-group">
+    <span class="label label-info">Choose file [csv(utf-8) | xls | xlsx] to upload</span>
+    <input type="file" id="dataFile" name="upload" accept=".csv,.xls,.xlsx" />
+  </div>
 
     <div class="form-group">
-        <input type="file" id="dataFile" name="upload" accept=".csv" />
+      <input type="submit" value="Upload" class="btn btn-default" />
     </div>
 
-    <div class="form-group">
-        <input type="submit" value="Upload" class="btn btn-default" />
-    </div>
-
-    if (Model != null)
-    {
-        <table class="table">
-            <thead>
-                <tr>
-                    @foreach (DataColumn col in Model.Columns)
-                    {
-                        <th>@col.ColumnName</th>
-                    }
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (DataRow row in Model.Rows)
-                {
-                    <tr>
-                        @foreach (DataColumn col in Model.Columns)
-                        {
-                            <td>@row[col.ColumnName]</td>
-                        }
-                    </tr>
-                }
-            </tbody>
-        </table>
-    }
+  if (Model != null)
+  {
+    <table class="table">
+      <thead>
+        <tr>
+          @foreach (DataColumn col in Model.Columns)
+          {
+            <th>@col.ColumnName</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+          <tr>
+            @foreach (DataColumn col in Model.Columns)
+            {
+              <td>@row[col.ColumnName]</td>
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
 }
