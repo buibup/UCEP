@@ -33,8 +33,10 @@
               <li class="dropdown">
                 <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">Site<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/UCEP/Index/">SVH</a></li>
-                  <li><a href="/UCEP/Index/">SNH</a></li>
+                  @*<li><a href="/UCEP/Index/">SVH</a></li>*@
+                  <li>@Html.ActionLink("SVH", "Index", "UCEP", new { site = "SVH" }, null)</li>
+                  <li><a>@Html.ActionLink("SNH", "Index", "UCEP", new { site = "SNH" }, null)</a></li>
+                  @*<li><a href="/UCEP/Index/">SNH</a></li>*@
                 </ul>
               </li>
             </ul>

@@ -16,7 +16,7 @@ namespace UCEP.Controllers
         }
         // GET: UCEP
         [OutputCache(Duration =60)]
-        public ActionResult Index(string searchString,string hospital)
+        public ActionResult Index(string searchString,string site)
         {
             var models = new List<FsCatalogue>();
             if (!string.IsNullOrEmpty(searchString))
