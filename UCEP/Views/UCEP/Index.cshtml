@@ -1,6 +1,5 @@
 @model IEnumerable<UCEP.Models.FsCatalogue>
 
-
 @{
     ViewBag.Title = "Index";
 }
@@ -79,95 +78,102 @@
   }
 </style>
 
-<h2>Index</h2>
+<h2>List Item</h2>
+
+@*<p>
+  @Html.DropDownList("Hospital",
+                    new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
+                    "Select Hospital",
+                    new { @class = "form-control" })
+</p>*@
 
 <p>
   @Html.ActionLink("Create New", "Create")
-  @using (Html.BeginForm())
-  {
+</p>
+@using (Html.BeginForm())
+{
   <p>
-    FSCodeHos : @Html.TextBox("SearchString") <br />
+    FSCodeHos: @Html.TextBox("SearchString") <br />
     <input type="submit" value="Filter" />
   </p>
+}
+
+
+
+<table class="table">
+  <tr>
+    <th>
+      @Html.DisplayNameFor(model => model.HospitalCode)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.FSCodeNIEMS)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.FSCodeHos)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Category)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Meaning)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Unit)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Price)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.EffectiveDate)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.Status)
+    </th>
+    <th>
+      @Html.DisplayNameFor(model => model.ApprovalDate)
+    </th>
+    @*<th></th>*@
+  </tr>
+
+  @foreach (var item in Model)
+      {
+    <tr>
+      <td>
+        @Html.DisplayFor(modelItem => item.HospitalCode)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.FSCodeNIEMS)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.FSCodeHos)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Category)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Meaning)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Unit)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Price)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.EffectiveDate)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.Status)
+      </td>
+      <td>
+        @Html.DisplayFor(modelItem => item.ApprovalDate)
+      </td>
+      @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>*@
+    </tr>
   }
 
-  </p>
-
-
-  <table class="table">
-    <tr>
-      <th>
-        @Html.DisplayNameFor(model => model.HospitalCode)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.FSCodeNIEMS)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.FSCodeHos)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Category)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Meaning)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Unit)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Price)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.EffectiveDate)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Status)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.ApprovalDate)
-      </th>
-      @*<th></th>*@
-    </tr>
-
-    @foreach (var item in Model)
-    {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.HospitalCode)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.FSCodeNIEMS)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.FSCodeHos)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Meaning)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Unit)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.EffectiveDate)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.ApprovalDate)
-        </td>
-        @*<td>
-              @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-              @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-              @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-          </td>*@
-      </tr>
-    }
-
-  </table>
+</table>

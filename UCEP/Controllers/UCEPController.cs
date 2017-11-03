@@ -15,7 +15,8 @@ namespace UCEP.Controllers
             GlobalConfig.InitializeConnections(DatabaseType.MySql);
         }
         // GET: UCEP
-        public ActionResult Index(string searchString)
+        [OutputCache(Duration =60)]
+        public ActionResult Index(string searchString,string hospital)
         {
             var models = new List<FsCatalogue>();
             if (!string.IsNullOrEmpty(searchString))
