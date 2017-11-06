@@ -7,6 +7,17 @@
   @Styles.Render("~/Content/css")
   @Scripts.Render("~/bundles/modernizr")
 </head>
+@{
+    string hos = null;
+    if (string.IsNullOrEmpty(ViewBag.Hospital))
+    {
+      hos = "Site";
+    }
+    else
+    {
+      hos = ViewBag.Hospital;
+    }
+}
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -27,20 +38,18 @@
         <ul class="nav navbar-nav navbar-right">
           @*<li><a id="registerLink" href="/LT/Account/Register">Register</a></li>*@
           @*<li><a id="loginLink" href="/LT/Account/Login">Log in</a></li>*@
-          <!--For when the navbar is NOT collapsed-->
-          <li class="collapse-hidden">
+          @*For when the navbar is NOT collapsed*@
+          @*<li class="collapse-hidden">
             <ul class="nav navbar-nav collapse-hidden">
               <li class="dropdown">
-                <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">Site<b class="caret"></b></a>
+                <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">@hos<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                  @*<li><a href="/UCEP/Index/">SVH</a></li>*@
                   <li>@Html.ActionLink("SVH", "Index", "UCEP", new { site = "SVH" }, null)</li>
                   <li><a>@Html.ActionLink("SNH", "Index", "UCEP", new { site = "SNH" }, null)</a></li>
-                  @*<li><a href="/UCEP/Index/">SNH</a></li>*@
                 </ul>
               </li>
             </ul>
-          </li>
+          </li>*@
         </ul>
       </div>
     </div>

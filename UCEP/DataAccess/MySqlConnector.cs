@@ -84,6 +84,17 @@ namespace UCEP.DataAccess
       return models;
     }
 
+    public List<FsCatalogue> GetAllFsCatalogueByHospitalCode(int code)
+    {
+      var models = new List<FsCatalogue>();
+      using (IDbConnection db = new MySqlConnection(conString))
+      {
+        models = db.Query<FsCatalogue>(DbQuery.GetAllFsCatalogueByHospitalCode(), new { HospitalCode = code }).ToList();
+      }
+
+      return models;
+    }
+
     public FsCatalogue GetFsCatalogue(string FSCodeHos)
     {
       var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos ;";

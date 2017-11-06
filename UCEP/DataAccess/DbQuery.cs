@@ -5,35 +5,42 @@ using System.Web;
 
 namespace UCEP.DataAccess
 {
-    public class DbQuery
+  public class DbQuery
+  {
+    public static string InsertToFsCatalogue()
     {
-        public static string InsertToFsCatalogue()
-        {
-            const string sqlQuery = "INSERT INTO FsCatalogues (HospitalCode, FSCodeNIEMS, FSCodeHos, Category, Meaning, Unit, Price, EffectiveDate, Status, ApprovalDate) VALUES(@HospitalCode, @FSCodeNIEMS, @FSCodeHos, @Category, @Meaning, @Unit, @Price, @EffectiveDate, @Status, @ApprovalDate)";
+      const string sqlQuery = "INSERT INTO FsCatalogues (HospitalCode, FSCodeNIEMS, FSCodeHos, Category, Meaning, Unit, Price, EffectiveDate, Status, ApprovalDate) VALUES(@HospitalCode, @FSCodeNIEMS, @FSCodeHos, @Category, @Meaning, @Unit, @Price, @EffectiveDate, @Status, @ApprovalDate)";
 
-            return sqlQuery;
-        }
+      return sqlQuery;
+    }
 
-        public static string DeleteFromFsCatalogue()
-        {
-            const string sqlQuery = "Delete From FsCatalogues WHERE Id = @Id";
+    public static string DeleteFromFsCatalogue()
+    {
+      const string sqlQuery = "Delete From FsCatalogues WHERE Id = @Id";
 
-            return sqlQuery;
-        }
+      return sqlQuery;
+    }
 
-        public static string GetFsCatalogue()
-        {
-            const string sqlQuery = "Select * From FsCatalogues WHERE Id = @Id";
+    public static string GetFsCatalogue()
+    {
+      const string sqlQuery = "Select * From FsCatalogues WHERE Id = @Id";
 
-            return sqlQuery;
-        }
+      return sqlQuery;
+    }
 
-        public static string EditFsCatalogue()
-        {
-            const string sqlQuery = @"Update FsCatalogues Set HospitalCode = @HospitalCode, FSCodeNIEMS = @FSCodeNIEMS, FSCodeHos = @FSCodeHos, Category = @Category, Meaning = @Meaning
+    public static string EditFsCatalogue()
+    {
+      const string sqlQuery = @"Update FsCatalogues Set HospitalCode = @HospitalCode, FSCodeNIEMS = @FSCodeNIEMS, FSCodeHos = @FSCodeHos, Category = @Category, Meaning = @Meaning
                                     , Unit = @Unit, Price = @Price, EffectiveDate = @EffectiveDate, Status = @Status, ApprovalDate = @ApprovalDate Where Id = @Id";
 
-            return sqlQuery;
-        }
+      return sqlQuery;
     }
+
+    public static string GetAllFsCatalogueByHospitalCode()
+    {
+      const string sqlQuery = "SELECT * FROM ucep.FsCatalogues where HospitalCode = @HospitalCode";
+
+      return sqlQuery;
+    }
+  }
 }

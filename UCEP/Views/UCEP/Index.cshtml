@@ -80,25 +80,41 @@
 
 <h2>List Item</h2>
 
-@*<p>
-  @Html.DropDownList("Hospital",
-                    new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
-                    "Select Hospital",
-                    new { @class = "form-control" })
-</p>*@
+<span id="spanHos"></span>
 
 <p>
   @Html.ActionLink("Create New", "Create")
 </p>
+<p>
+
+  @using (Html.BeginForm("Index", "UCEP", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+  {
+    @Html.DropDownList("hospital",
+                      new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
+                      "---Select Hospital---",
+                      new { @class = "form-control", onchange = "SelectedIndexChanged()" })
+  }
+</p>
 @using (Html.BeginForm())
 {
+  <p>
+    @*@Html.DropDownList("hospital",
+      new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
+      "Select Hospital",
+      new { @class = "form-control" })*@
+
+  </p>
+
   <p>
     FSCodeHos: @Html.TextBox("SearchString") <br />
     <input type="submit" value="Filter" />
   </p>
 }
 
-
+@*@using (Html.BeginForm("Index", "UCEP", FormMethod.Post, new { id = "demoForm", name = "demoForm" }))
+{
+  @Html.DropDownList("hospital", new SelectList(Enum.GetValues(typeof(Enums.Hospital))), "---Select Hospital---", new { Class = "ddlStyle", onchange = "SelectedIndexChanged()" })
+}*@
 
 <table class="table">
   <tr>
@@ -177,3 +193,13 @@
   }
 
 </table>
+
+@*<script src="~/Scripts/jquery-3.2.1.js"></script>*@
+<script type="text/javascript">
+
+  function SelectedIndexChanged() {
+    //Form post
+    document.demoForm.submit();
+  }
+</script>
+

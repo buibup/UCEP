@@ -13,6 +13,7 @@ namespace UCEP.DataAccess
     bool AddFsCatalogues(List<FsCatalogue> models);
     FsCatalogue GetFsCatalogue(string FSCodeHos);
     List<FsCatalogue> GetAllFsCatalogue();
+    List<FsCatalogue> GetAllFsCatalogueByHospitalCode(int Code);
     FsCatalogue GetFsCatalogue(int id);
     void CreateFsCatalogue(FsCatalogue model);
     FsCatalogue EditFsCatalogue(int id);

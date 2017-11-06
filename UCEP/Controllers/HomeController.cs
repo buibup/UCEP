@@ -145,7 +145,6 @@ namespace UCEP.Controllers
 
 
       return RedirectToAction("Export", "Home");
-      //return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "export.csv");
     }
 
     public ActionResult Export()
