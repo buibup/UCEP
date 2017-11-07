@@ -2,22 +2,13 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
   <title>@ViewBag.Title - UCEP</title>
   @Styles.Render("~/Content/css")
   @Scripts.Render("~/bundles/modernizr")
+  <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
-@{
-    string hos = null;
-    if (string.IsNullOrEmpty(ViewBag.Hospital))
-    {
-      hos = "Site";
-    }
-    else
-    {
-      hos = ViewBag.Hospital;
-    }
-}
+
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -40,16 +31,16 @@
           @*<li><a id="loginLink" href="/LT/Account/Login">Log in</a></li>*@
           @*For when the navbar is NOT collapsed*@
           @*<li class="collapse-hidden">
-            <ul class="nav navbar-nav collapse-hidden">
-              <li class="dropdown">
-                <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">@hos<b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li>@Html.ActionLink("SVH", "Index", "UCEP", new { site = "SVH" }, null)</li>
-                  <li><a>@Html.ActionLink("SNH", "Index", "UCEP", new { site = "SNH" }, null)</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>*@
+              <ul class="nav navbar-nav collapse-hidden">
+                <li class="dropdown">
+                  <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">@hos<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("SVH", "Index", "UCEP", new { site = "SVH" }, null)</li>
+                    <li><a>@Html.ActionLink("SNH", "Index", "UCEP", new { site = "SNH" }, null)</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>*@
         </ul>
       </div>
     </div>

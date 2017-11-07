@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using static UCEP.Enums;
 
 namespace UCEP.ViewModels
 {
@@ -10,6 +11,7 @@ namespace UCEP.ViewModels
     public string HN { get; set; }
     public string Date { get; set; }
     public string Time { get; set; }
+    public Hospital PatientHospital { get; set; }
     public bool MatchAll { get; set; }
   }
 }

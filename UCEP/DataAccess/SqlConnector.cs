@@ -90,5 +90,15 @@ namespace UCEP.DataAccess
     {
       throw new NotImplementedException();
     }
+
+    public FsCatalogue GetFsCatalogue(string FSCodeHos, string HospitalCode)
+    {
+      throw new NotImplementedException();
+    }
+
+    public FsCatalogue GetFsCatalogueFromGlobalConfig(string FSCodeHos)
+    {
+      throw new NotImplementedException();
+    }
   }
 }

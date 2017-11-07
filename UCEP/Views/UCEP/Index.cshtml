@@ -1,5 +1,6 @@
 @model IEnumerable<UCEP.Models.FsCatalogue>
 
+
 @{
     ViewBag.Title = "Index";
 }
@@ -36,7 +37,7 @@
 
     /* Force table to not be like tables anymore */
     table, thead, tbody, th, td, tr {
-      display: block;
+      /*display: block;*/
     }
 
       /* Hide table headers (but not display: none;, for accessibility) */
@@ -78,7 +79,7 @@
   }
 </style>
 
-<h2>List Item</h2>
+<h2>List Item @GlobalConfig.Hospital.Item2</h2>
 
 <span id="spanHos"></span>
 
@@ -86,12 +87,11 @@
   @Html.ActionLink("Create New", "Create")
 </p>
 <p>
-
   @using (Html.BeginForm("Index", "UCEP", FormMethod.Post, new { id = "dropdownHos", name = "dropdownHos" }))
   {
     @Html.DropDownList("hospital",
                       new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
-                      "---Select Hospital---", 
+                      "---Select Hospital---",
                       new { @class = "form-control", onchange = "SelectedIndexChanged()" })
   }
 </p>
@@ -102,7 +102,6 @@
     <input type="submit" value="Filter" />
   </p>
 }
-
 <table class="table">
   <tr>
     <th>
@@ -181,11 +180,12 @@
 
 </table>
 
+
 <script type="text/javascript">
 
   function SelectedIndexChanged() {
     //Form post
-      document.dropdownHos.submit();
+    document.dropdownHos.submit();
   }
 </script>
 
