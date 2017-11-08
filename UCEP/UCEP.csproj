@@ -193,6 +193,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
+    <Compile Include="Models\DrugCatalogue.cs" />
     <Compile Include="Models\FsCatalogue.cs" />
     <Compile Include="Models\FsTemplate.cs" />
     <Compile Include="Models\UCEPDbContext.cs" />

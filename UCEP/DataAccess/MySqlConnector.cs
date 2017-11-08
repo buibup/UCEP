@@ -95,7 +95,12 @@ namespace UCEP.DataAccess
       return models;
     }
 
-    public FsCatalogue GetFsCatalogue(string FSCodeHos)
+        public DrugCatalogue GetDrugCatalogue(string DrugCodeHos, string HospitalCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FsCatalogue GetFsCatalogue(string FSCodeHos)
     {
       if (GlobalConfig.FsCatalogueList.Count > 0)
       {

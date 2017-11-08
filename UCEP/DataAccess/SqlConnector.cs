@@ -63,7 +63,12 @@ namespace UCEP.DataAccess
       throw new NotImplementedException();
     }
 
-    public FsCatalogue GetFsCatalogue(string FSCodeHos)
+        public DrugCatalogue GetDrugCatalogue(string DrugCodeHos, string HospitalCode)
+        {
+            throw new NotImplementedException();
+        }
+
+        public FsCatalogue GetFsCatalogue(string FSCodeHos)
     {
       var item = db.FsCatalogues.Where(m => m.FSCodeHos == FSCodeHos).Select(m => new { m.HospitalCode, m.FSCodeNIEMS, m.FSCodeHos, m.Category, m.Meaning, m.Unit, m.Price, m.EffectiveDate, m.Status, m.ApprovalDate }).SingleOrDefault();
 
