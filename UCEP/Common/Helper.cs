@@ -163,7 +163,7 @@ namespace UCEP.Common
     public static string TimeFormat(this string time)
     {
       var reg = @"^(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$";
-      var match = Regex.Match(time, reg);
+      var match = Regex.Match(time.Trim(), reg);
       var result = time;
 
       if (!match.Success)

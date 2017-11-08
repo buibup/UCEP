@@ -146,6 +146,8 @@ namespace UCEP.Controllers
       var hos = pt.PatientHospital.ToString();
       var matchAll = pt.MatchAll;
 
+      GlobalConfig.HN = hn.Trim();
+
       var dtmFrom = Helper.StringToDateTime(dte, tme);
       var dtmTo = dtmFrom.AddHours(72);
 
@@ -180,10 +182,10 @@ namespace UCEP.Controllers
       sb.AppendLine($"use_date,F/S code หรือ TMT Code,Hospital code,category,mean,unit,price_total");
       foreach (var data in GlobalConfig.FsTemplateList)
       {
-        sb.AppendLine($"{data.UseDate},{data.FSCodeOrTMTCode},{data.HospitalCode},{data.Category},{data.Mean},{data.Unit},{data.PriceTotal}");
+        sb.AppendLine($"{data.UseDate},{data.FSCodeOrTMTCode},{data.HospitalCode},{data.Category},{data.Mean.Replace(","," ")},{data.Unit},{data.PriceTotal}");
       }
 
-      return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", "export.csv");
+      return File(new UTF8Encoding().GetBytes(sb.ToString()), "text/csv", $"{GlobalConfig.HN}.csv");
     }
 
     [HttpPost]
