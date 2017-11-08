@@ -151,18 +151,20 @@ namespace UCEP.Controllers
       var dtmFrom = Helper.StringToDateTime(dte, tme);
       var dtmTo = dtmFrom.AddHours(72);
 
-      var query = QueryString.GetPatientDetialByHn(hn, dtmFrom, dtmTo);
+      var queryFS = QueryString.GetPatientOrderNoDrug(hn, dtmFrom, dtmTo);
+      var dtFS = InterSystemsDA.DTBindDataCommandWihDictionary(queryFS.Item1, Constants.Chache89, queryFS.Item2);
+      var fsTemplateListFS = Helper.DTToFsTemplateList(dtFS, hos.GetHospitalCode().ToString());
 
-      var dt = InterSystemsDA.DTBindDataCommandWihDictionary(query.Item1, Constants.Chache89, query.Item2);
-
-      var fsTemplateList = Helper.DTToFsTemplateList(dt, hos.GetHospitalCode().ToString());
+      var queryDrug= QueryString.GetPatientOrderDrug(hn, dtmFrom, dtmTo);
+      var dtDrug = InterSystemsDA.DTBindDataCommandWihDictionary(queryDrug.Item1, Constants.Chache89, queryDrug.Item2);
+      var fsTemplateListDrug = Helper.DTToFsTemplateList(dtDrug, hos.GetHospitalCode().ToString());
 
       if (matchAll)
       {
-        fsTemplateList = fsTemplateList.Where(d => !string.IsNullOrEmpty(d.FSCodeOrTMTCode)).ToList();
+        fsTemplateListFS = fsTemplateListFS.Where(d => !string.IsNullOrEmpty(d.FSCodeOrTMTCode)).ToList();
       }
 
-      GlobalConfig.FsTemplateList = fsTemplateList;
+      GlobalConfig.FsTemplateList = fsTemplateListFS;
 
 
 
