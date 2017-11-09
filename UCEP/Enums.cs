@@ -18,5 +18,11 @@ namespace UCEP
       SVH = 11811,
       SNH = 11704
     }
+
+    public enum Catalogue
+    {
+      DrugCatalogue,
+      FSCatalogue
+    }
   }
 }

@@ -10,12 +10,18 @@ namespace UCEP.DataAccess
   public class SqlConnector : IDataConnection
   {
     private UCEPDbContext db = new UCEPDbContext();
+
+    public bool AddDrugCatalogues(List<DrugCatalogue> models)
+    {
+      throw new NotImplementedException();
+    }
+
     public bool AddFsCatalogues(List<FsCatalogue> models)
     {
       try
       {
         // truncate table
-        db.Database.ExecuteSqlCommand("TRUNCATE TABLE [FsCatalogues]");
+        // db.Database.ExecuteSqlCommand("TRUNCATE TABLE [FsCatalogues]");
 
         // save models to database
         db.FsCatalogues.AddRange(models);
@@ -49,6 +55,11 @@ namespace UCEP.DataAccess
     }
 
     public void EditFsCatalogue(FsCatalogue model)
+    {
+      throw new NotImplementedException();
+    }
+
+    public List<DrugCatalogue> GetAllDrugCatalogue()
     {
       throw new NotImplementedException();
     }

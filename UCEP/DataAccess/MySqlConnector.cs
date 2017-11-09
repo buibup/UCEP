@@ -13,15 +13,41 @@ namespace UCEP.DataAccess
   public class MySqlConnector : IDataConnection
   {
     private string conString = GlobalConfig.CnnString("UCEPMySqlDB");
+
+    public bool AddDrugCatalogues(List<DrugCatalogue> models)
+    {
+      try
+      {
+        using (IDbConnection db = new MySqlConnection(conString))
+        {
+          //db.Execute("truncate table FsCatalogues");
+          db.Execute(DbQuery.InsertToDrugCatalogue(), models);
+        }
+
+        return true;
+      }
+      catch (Exception ex)
+      {
+        return false;
+      }
+    }
+
     public bool AddFsCatalogues(List<FsCatalogue> models)
     {
-      using (IDbConnection db = new MySqlConnection(conString))
+      try
       {
-        //db.Execute("truncate table FsCatalogues");
-        db.Execute(DbQuery.InsertToFsCatalogue(), models);
-      }
+        using (IDbConnection db = new MySqlConnection(conString))
+        {
+          //db.Execute("truncate table FsCatalogues");
+          db.Execute(DbQuery.InsertToFsCatalogue(), models);
+        }
 
-      return true;
+        return true;
+      }
+      catch (Exception)
+      {
+        return false;
+      }
     }
 
     public void CreateFsCatalogue(FsCatalogue model)
@@ -72,6 +98,17 @@ namespace UCEP.DataAccess
       }
     }
 
+    public List<DrugCatalogue> GetAllDrugCatalogue()
+    {
+      var models = new List<DrugCatalogue>();
+      using (IDbConnection db = new MySqlConnection(conString))
+      {
+        models = db.Query<DrugCatalogue>(DbQuery.GetAllDrugCatalogue()).ToList();
+      }
+
+      return models;
+    }
+
     public List<FsCatalogue> GetAllFsCatalogue()
     {
       var models = new List<FsCatalogue>();
@@ -95,12 +132,12 @@ namespace UCEP.DataAccess
       return models;
     }
 
-        public DrugCatalogue GetDrugCatalogue(string DrugCodeHos, string HospitalCode)
-        {
-            throw new NotImplementedException();
-        }
+    public DrugCatalogue GetDrugCatalogue(string DrugCodeHos, string HospitalCode)
+    {
+      throw new NotImplementedException();
+    }
 
-        public FsCatalogue GetFsCatalogue(string FSCodeHos)
+    public FsCatalogue GetFsCatalogue(string FSCodeHos)
     {
       if (GlobalConfig.FsCatalogueList.Count > 0)
       {

@@ -15,6 +15,7 @@ namespace UCEP
     public static Tuple<int, string> Hospital { get; set; } = new Tuple<int, string>(0, "");
     public static List<FsTemplate> FsTemplateList { get; set; } = new List<FsTemplate>();
     public static List<FsCatalogue> FsCatalogueList { get; set; } = new List<FsCatalogue>();
+    public static List<DrugCatalogue> DrugCatalogueList { get; set; } = new List<DrugCatalogue>();
     public static IDataConnection Connection { get; private set; }
 
     public static void InitializeConnections(DatabaseType db)

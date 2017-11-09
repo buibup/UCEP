@@ -9,13 +9,20 @@
   @Html.ValidationSummary()
 
   <div class="form-group">
+    @Html.DropDownList("catalogue",
+                      new SelectList(Enum.GetValues(typeof(Enums.Catalogue))),
+                      "---Select Catalogue---",
+                      new { @class = "form-control" })
+  </div>
+
+  <div class="form-group">
     <span class="label label-info">Choose file [csv(utf-8) | xls | xlsx] to upload</span>
     <input type="file" id="dataFile" name="upload" accept=".csv,.xls,.xlsx" />
   </div>
 
-    <div class="form-group">
-      <input type="submit" value="Upload" class="btn btn-default" />
-    </div>
+  <div class="form-group">
+    <input type="submit" value="Upload" class="btn btn-default" />
+  </div>
 
   if (Model != null)
   {

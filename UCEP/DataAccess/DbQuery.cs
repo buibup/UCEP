@@ -14,6 +14,30 @@ namespace UCEP.DataAccess
       return sqlQuery;
     }
 
+    public static string InsertToDrugCatalogue()
+    {
+      const string sqlQuery = @"
+
+        INSERT INTO `ucep`.`DrugCatalogues`
+        (`﻿HOSPDRUGCODE`,`PRODUCTCAT`,`TMTID`,`SPECPREP`,
+        `GENERICNAME`,`TRADENAME`,`DFSCODE`,`DOSAGEFORM`,
+        `STRENGTH`,`CONTENT`,`UNITPRICE`,`DISTRIBUTOR`,
+        `MANUFACTURER`,`ISED`,`NDC24`,`PACKSIZE`,
+        `PACKPRICE`,`UPDATEFLAG`,`DATECHANGE`,`DATEUPDATE`,
+        `DATEEFFECTIVE`,`ISED_APPROVED`,`NDC24_APPROVED`,
+        `DATE_APPROVED`,`ISED_STATUS`)
+        VALUES
+        (@HOSPDRUGCODE,@PRODUCTCAT,@TMTID,@SPECPREP,@GENERICNAME,
+        @TRADENAME,@DFSCODE,@DOSAGEFORM,@STRENGTH,@CONTENT,@UNITPRICE,
+        @DISTRIBUTOR,@MANUFACTURER,@ISED,@NDC24,@PACKSIZE,@PACKPRICE,
+        @UPDATEFLAG,@DATECHANGE,@DATEUPDATE,@DATEEFFECTIVE,@ISED_APPROVED,
+        @NDC24_APPROVED,@DATE_APPROVED,@ISED_STATUS);
+
+      ";
+
+      return sqlQuery;
+    }
+
     public static string DeleteFromFsCatalogue()
     {
       const string sqlQuery = "Delete From FsCatalogues WHERE Id = @Id";
@@ -39,6 +63,13 @@ namespace UCEP.DataAccess
     public static string GetAllFsCatalogueByHospitalCode()
     {
       const string sqlQuery = "SELECT * FROM ucep.FsCatalogues where HospitalCode = @HospitalCode";
+
+      return sqlQuery;
+    }
+
+    public static string GetAllDrugCatalogue()
+    {
+      const string sqlQuery = "SELECT * FROM ucep.DrugCatalogues;";
 
       return sqlQuery;
     }

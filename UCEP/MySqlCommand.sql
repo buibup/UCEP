@@ -15,3 +15,31 @@ CREATE TABLE FsCatalogues(
 	`Id` ASC
 ) 
 ); 
+CREATE TABLE `DrugCatalogues` (
+  `HOSPDRUGCODE` varchar(50) NOT NULL,
+  `PRODUCTCAT` int(11) DEFAULT NULL,
+  `TMTID` varchar(50) DEFAULT NULL,
+  `SPECPREP` text,
+  `GENERICNAME` text,
+  `TRADENAME` text,
+  `DFSCODE` text,
+  `DOSAGEFORM` text,
+  `STRENGTH` text,
+  `CONTENT` text,
+  `UNITPRICE` double DEFAULT NULL,
+  `DISTRIBUTOR` text,
+  `MANUFACTURER` text,
+  `ISED` varchar(20) DEFAULT NULL,
+  `NDC24` text,
+  `PACKSIZE` text,
+  `PACKPRICE` text,
+  `UPDATEFLAG` varchar(10) DEFAULT NULL,
+  `DATECHANGE` datetime DEFAULT NULL,
+  `DATEUPDATE` datetime DEFAULT NULL,
+  `DATEEFFECTIVE` datetime DEFAULT NULL,
+  `ISED_APPROVED` varchar(20) DEFAULT NULL,
+  `NDC24_APPROVED` text,
+  `DATE_APPROVED` datetime DEFAULT NULL,
+  `ISED_STATUS` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`﻿HOSPDRUGCODE`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
