@@ -1,14 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using UCEP.Models;
 
 namespace UCEP.DataAccess
 {
-  public interface IDataConnection
+    public interface IDataConnection
   {
     bool AddFsCatalogues(List<FsCatalogue> models);
     bool AddDrugCatalogues(List<DrugCatalogue> models);

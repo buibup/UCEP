@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
 namespace UCEP.DataAccess
 {
-  public class DbQuery
+    public class DbQuery
   {
     public static string InsertToFsCatalogue()
     {
@@ -19,7 +14,7 @@ namespace UCEP.DataAccess
       const string sqlQuery = @"
 
         INSERT INTO `ucep`.`DrugCatalogues`
-        (`﻿HOSPDRUGCODE`,`PRODUCTCAT`,`TMTID`,`SPECPREP`,
+        (HospDrugCode,`PRODUCTCAT`,`TMTID`,`SPECPREP`,
         `GENERICNAME`,`TRADENAME`,`DFSCODE`,`DOSAGEFORM`,
         `STRENGTH`,`CONTENT`,`UNITPRICE`,`DISTRIBUTOR`,
         `MANUFACTURER`,`ISED`,`NDC24`,`PACKSIZE`,
@@ -69,7 +64,7 @@ namespace UCEP.DataAccess
 
     public static string GetAllDrugCatalogue()
     {
-      const string sqlQuery = "SELECT * FROM ucep.DrugCatalogues;";
+      const string sqlQuery = @"SELECT * FROM `ucep`.`DrugCatalogues`; ";
 
       return sqlQuery;
     }

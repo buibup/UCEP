@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
 using UCEP.DataAccess;
 using UCEP.Models;
 using static UCEP.Enums;
 
 namespace UCEP
 {
-  public class GlobalConfig
+    public class GlobalConfig
   {
     public static string HN { get; set; }
     public static Tuple<int, string> Hospital { get; set; } = new Tuple<int, string>(0, "");

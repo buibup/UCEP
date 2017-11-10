@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using static UCEP.Enums;
 
 namespace UCEP.ViewModels
 {
-  public class PatientModel
+    public class PatientModel
   {
     public string HN { get; set; }
     public string Date { get; set; }

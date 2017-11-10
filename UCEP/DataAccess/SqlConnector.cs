@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using UCEP.Models;
 
 namespace UCEP.DataAccess
 {
-  public class SqlConnector : IDataConnection
+    public class SqlConnector : IDataConnection
   {
     private UCEPDbContext db = new UCEPDbContext();
 

@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using UCEP.Common;
 using UCEP.Models;
@@ -9,7 +7,7 @@ using static UCEP.Enums;
 
 namespace UCEP.Controllers
 {
-  public class UCEPController : Controller
+    public class UCEPController : Controller
   {
     public UCEPController()
     {

@@ -2,7 +2,6 @@ using CRMWebApi.DA;
 using ExcelDataReader;
 using LINQtoCSV;
 using LumenWorks.Framework.IO.Csv;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -11,14 +10,13 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using UCEP.Common;
-using UCEP.DataAccess;
 using UCEP.Models;
 using UCEP.ViewModels;
 using static UCEP.Enums;
 
 namespace UCEP.Controllers
 {
-  public class HomeController : Controller
+    public class HomeController : Controller
   {
     private UCEPDbContext db = new UCEPDbContext();
 
@@ -45,13 +43,7 @@ namespace UCEP.Controllers
       {
         if (upload != null && upload.ContentLength > 0)
         {
-
-          //var FsCatalogues = new List<FsCatalogue>();
-          //var dataToDb = new List<FsCatalogue>();
-
-          // Get Item from database
-          //var dataDb = GlobalConfig.Connection.GetAllFsCatalogue();
-
+               
           //ExcelDataReader works on binary excel file
           Stream stream = upload.InputStream;
 
@@ -115,7 +107,7 @@ namespace UCEP.Controllers
     {
       ViewData["hospital"] = GlobalConfig.Hospital;
       var pt = new PatientModel();
-      //pt.PatientHospital = ((Tuple<int, string>)ViewData["hospital"]).Item2;
+
       return View();
     }
 
