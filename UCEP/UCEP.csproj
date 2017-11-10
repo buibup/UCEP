@@ -195,7 +195,7 @@
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\DrugCatalogue.cs" />
     <Compile Include="Models\FsCatalogue.cs" />
-    <Compile Include="Models\FsTemplate.cs" />
+    <Compile Include="Models\FsDrugTemplate.cs" />
     <Compile Include="Models\UCEPDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\PatientModel.cs" />

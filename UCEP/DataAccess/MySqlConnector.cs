@@ -10,193 +10,206 @@ using System.Web.Mvc;
 namespace UCEP.DataAccess
 {
     public class MySqlConnector : IDataConnection
-  {
-    private string conString = GlobalConfig.CnnString("UCEPMySqlDB");
-
-    public bool AddDrugCatalogues(List<DrugCatalogue> models)
     {
-      try
-      {
-        using (IDbConnection db = new MySqlConnection(conString))
+        private string conString = GlobalConfig.CnnString("UCEPMySqlDB");
+
+        public bool AddDrugCatalogues(List<DrugCatalogue> models)
         {
-          //db.Execute("truncate table FsCatalogues");
-          db.Execute(DbQuery.InsertToDrugCatalogue(), models);
+            try
+            {
+                using (IDbConnection db = new MySqlConnection(conString))
+                {
+                    //db.Execute("truncate table FsCatalogues");
+                    db.Execute(DbQuery.InsertToDrugCatalogue(), models);
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
-        return true;
-      }
-      catch (Exception ex)
-      {
-        return false;
-      }
-    }
-
-    public bool AddFsCatalogues(List<FsCatalogue> models)
-    {
-      try
-      {
-        using (IDbConnection db = new MySqlConnection(conString))
+        public bool AddFsCatalogues(List<FsCatalogue> models)
         {
-          //db.Execute("truncate table FsCatalogues");
-          db.Execute(DbQuery.InsertToFsCatalogue(), models);
+            try
+            {
+                using (IDbConnection db = new MySqlConnection(conString))
+                {
+                    //db.Execute("truncate table FsCatalogues");
+                    db.Execute(DbQuery.InsertToFsCatalogue(), models);
+                }
+
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        return true;
-      }
-      catch (Exception)
-      {
-        return false;
-      }
-    }
-
-    public void CreateFsCatalogue(FsCatalogue model)
-    {
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        int rowsAffected = db.Execute(DbQuery.InsertToFsCatalogue(), model);
-      }
-    }
-
-    public FsCatalogue DeleteFsCatalogue(int id)
-    {
-      var model = new FsCatalogue();
-
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
-      }
-
-      return model;
-    }
-
-    public void DeleteFsCatalogue(int id, FormCollection collection)
-    {
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        int rowsAffected = db.Execute(DbQuery.DeleteFromFsCatalogue(), new { Id = id });
-      }
-    }
-
-    public FsCatalogue EditFsCatalogue(int id)
-    {
-      var model = new FsCatalogue();
-
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
-      }
-
-      return model;
-    }
-
-    public void EditFsCatalogue(FsCatalogue model)
-    {
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        int rowsAffected = db.Execute(DbQuery.EditFsCatalogue(), model);
-      }
-    }
-
-    public List<DrugCatalogue> GetAllDrugCatalogue()
-    {
-      var models = new List<DrugCatalogue>();
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        models = db.Query<DrugCatalogue>(DbQuery.GetAllDrugCatalogue()).ToList();
-      }
-
-      return models;
-    }
-
-    public List<FsCatalogue> GetAllFsCatalogue()
-    {
-      var models = new List<FsCatalogue>();
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        var sqlQuery = "SELECT * FROM ucep.FsCatalogues;";
-        models = db.Query<FsCatalogue>(sqlQuery).ToList();
-      }
-
-      return models;
-    }
-
-    public List<FsCatalogue> GetAllFsCatalogueByHospitalCode(int code)
-    {
-      var models = new List<FsCatalogue>();
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        models = db.Query<FsCatalogue>(DbQuery.GetAllFsCatalogueByHospitalCode(), new { HospitalCode = code }).ToList();
-      }
-
-      return models;
-    }
-
-    public DrugCatalogue GetDrugCatalogue(string DrugCodeHos, string HospitalCode)
-    {
-      throw new NotImplementedException();
-    }
-
-    public FsCatalogue GetFsCatalogue(string FSCodeHos)
-    {
-      if (GlobalConfig.FsCatalogueList.Count > 0)
-      {
-        var data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).SingleOrDefault();
-        return data;
-      }
-      else
-      {
-        var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos ;";
-
-        using (IDbConnection db = new MySqlConnection(conString))
+        public void CreateFsCatalogue(FsCatalogue model)
         {
-          return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos }).SingleOrDefault();
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                int rowsAffected = db.Execute(DbQuery.InsertToFsCatalogue(), model);
+            }
         }
-      }
-    }
 
-    public FsCatalogue GetFsCatalogue(int id)
-    {
-      var model = new FsCatalogue();
-
-      using (IDbConnection db = new MySqlConnection(conString))
-      {
-        model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
-      }
-
-      return model;
-    }
-
-    public FsCatalogue GetFsCatalogue(string FSCodeHos, string HospitalCode)
-    {
-      if (GlobalConfig.FsCatalogueList.Count > 0)
-      {
-        var data = GlobalConfig.FsCatalogueList.Find(d => d.FSCodeHos == FSCodeHos && d.HospitalCode == HospitalCode);
-        return data;
-      }
-      else
-      {
-        var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos and HospitalCode = @HospitalCode ;";
-
-        using (IDbConnection db = new MySqlConnection(conString))
+        public FsCatalogue DeleteFsCatalogue(int id)
         {
-          return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos, HospitalCode = HospitalCode }).SingleOrDefault();
+            var model = new FsCatalogue();
+
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
+            }
+
+            return model;
         }
-      }
-    }
 
-    public FsCatalogue GetFsCatalogueFromGlobalConfig(string FSCodeHos)
-    {
-      var data = new FsCatalogue();
-      if (GlobalConfig.FsCatalogueList.Count > 0)
-      {
-        data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).SingleOrDefault();
-      }
-      else
-      {
-        data = null;
-      }
+        public void DeleteFsCatalogue(int id, FormCollection collection)
+        {
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                int rowsAffected = db.Execute(DbQuery.DeleteFromFsCatalogue(), new { Id = id });
+            }
+        }
 
-      return data;
+        public FsCatalogue EditFsCatalogue(int id)
+        {
+            var model = new FsCatalogue();
+
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
+            }
+
+            return model;
+        }
+
+        public void EditFsCatalogue(FsCatalogue model)
+        {
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                int rowsAffected = db.Execute(DbQuery.EditFsCatalogue(), model);
+            }
+        }
+
+        public List<DrugCatalogue> GetAllDrugCatalogue()
+        {
+            var models = new List<DrugCatalogue>();
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                models = db.Query<DrugCatalogue>(DbQuery.GetAllDrugCatalogue()).ToList();
+            }
+
+            return models;
+        }
+
+        public List<FsCatalogue> GetAllFsCatalogue()
+        {
+            var models = new List<FsCatalogue>();
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                var sqlQuery = "SELECT * FROM ucep.FsCatalogues;";
+                models = db.Query<FsCatalogue>(sqlQuery).ToList();
+            }
+
+            return models;
+        }
+
+        public List<FsCatalogue> GetAllFsCatalogueByHospitalCode(int code)
+        {
+            var models = new List<FsCatalogue>();
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                models = db.Query<FsCatalogue>(DbQuery.GetAllFsCatalogueByHospitalCode(), new { HospitalCode = code }).ToList();
+            }
+
+            return models;
+        }
+
+        public DrugCatalogue GetDrugCatalogue(string HospDrugCode, string HospitalCode)
+        {
+            if (GlobalConfig.FsCatalogueList.Count > 0)
+            {
+                var data = GlobalConfig.DrugCatalogueList.Find(d => d.HospDrugCode == HospDrugCode);
+                return data;
+            }
+            else
+            {
+                var query = "SELECT * FROM `ucep`.`DrugCatalogues` WHERE HospDrugCode = @HospDrugCode ; ;";
+
+                using (IDbConnection db = new MySqlConnection(conString))
+                {
+                    return db.Query<DrugCatalogue>(query, new { HospDrugCode = HospDrugCode }).SingleOrDefault();
+                }
+            }
+        }
+
+        public FsCatalogue GetFsCatalogue(string FSCodeHos)
+        {
+            if (GlobalConfig.FsCatalogueList.Count > 0)
+            {
+                var data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).SingleOrDefault();
+                return data;
+            }
+            else
+            {
+                var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos ;";
+
+                using (IDbConnection db = new MySqlConnection(conString))
+                {
+                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos }).SingleOrDefault();
+                }
+            }
+        }
+
+        public FsCatalogue GetFsCatalogue(int id)
+        {
+            var model = new FsCatalogue();
+
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
+            }
+
+            return model;
+        }
+
+        public FsCatalogue GetFsCatalogue(string FSCodeHos, string HospitalCode)
+        {
+            if (GlobalConfig.FsCatalogueList.Count > 0)
+            {
+                var data = GlobalConfig.FsCatalogueList.Find(d => d.FSCodeHos == FSCodeHos && d.HospitalCode == HospitalCode);
+                return data;
+            }
+            else
+            {
+                var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos and HospitalCode = @HospitalCode ;";
+
+                using (IDbConnection db = new MySqlConnection(conString))
+                {
+                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos, HospitalCode = HospitalCode }).SingleOrDefault();
+                }
+            }
+        }
+
+        public FsCatalogue GetFsCatalogueFromGlobalConfig(string FSCodeHos)
+        {
+            var data = new FsCatalogue();
+            if (GlobalConfig.FsCatalogueList.Count > 0)
+            {
+                data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).SingleOrDefault();
+            }
+            else
+            {
+                data = null;
+            }
+
+            return data;
+        }
     }
-  }
 }

@@ -138,9 +138,9 @@ namespace UCEP.Common
             return dtm;
         }
 
-        public static List<FsTemplate> DTToFsTemplateList(DataTable dt, string hosCode)
+        public static List<FsDrugTemplate> DTToFsDrugTemplateList(DataTable dt, string hosCode)
         {
-            List<FsTemplate> result = new List<FsTemplate>();
+            List<FsDrugTemplate> result = new List<FsDrugTemplate>();
 
             foreach (DataRow row in dt.Rows)
             {
@@ -166,11 +166,11 @@ namespace UCEP.Common
                     drugCat = GlobalConfig.Connection.GetDrugCatalogue(orderItemCode, hosCode);
                     if (drugCat != null)
                     {
-                        CodeNIEMS = "";
-                        Category = "";
+                        CodeNIEMS = drugCat.TMTID;
+                        Category = "3";
                     }
 
-                    FsTemplate fsTemplate = new FsTemplate()
+                    FsDrugTemplate fsTemplate = new FsDrugTemplate()
                     {
 
                         UseDate = $"{useDate} {useTime}",
@@ -193,7 +193,7 @@ namespace UCEP.Common
                         Category = fsCat.Category;
                     }
 
-                    FsTemplate fsTemplate = new FsTemplate()
+                    FsDrugTemplate fsTemplate = new FsDrugTemplate()
                     {
 
                         UseDate = $"{useDate} {useTime}",
@@ -212,6 +212,26 @@ namespace UCEP.Common
 
             return result;
         }
+
+        public static void SetCatalogue(this string catalogue)
+        {
+            GlobalConfig.Catalogue = catalogue;
+            if(catalogue == Catalogue.DrugCatalogue.ToString())
+            {
+                GlobalConfig.DrugCatalogueList = GlobalConfig.Connection.GetAllDrugCatalogue();
+            }
+            else if(catalogue == Catalogue.FSCatalogue.ToString())
+            {
+                GlobalConfig.FsCatalogueList = GlobalConfig.Connection.GetAllFsCatalogueByHospitalCode(GlobalConfig.Hospital.Item1);
+            }
+            else
+            {
+                GlobalConfig.FsCatalogueList = new List<FsCatalogue>();
+                GlobalConfig.DrugCatalogueList = new List<DrugCatalogue>();
+            }
+            
+        }
+        
 
         public static void SetHospital(this string hospital)
         {

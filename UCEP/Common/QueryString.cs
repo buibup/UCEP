@@ -96,7 +96,7 @@ namespace UCEP.Common
  		            ""Vw_BillDetailAc"".""OEORI_PhQtyOrd"" ""Unit"",
  		            ISNULL(""Vw_BillDetailAc"".""ITM_InsCompanyShare"", 0) + ISNULL(""Vw_BillDetailAc"".""ITM_PatientShare"", 0) + ISNULL(""Vw_BillDetailAc"".""ITM_SpecialistSurcharge"", 0) ""PriceTotal""
  		            ,""Vw_BillDetailAc"".""ITM_LineTotal""
-                    ,""Vw_BillDetailAc"".""ARCBG_Code""
+                    ,Vw_BillDetailAc.ARCBG_Code
              FROM   ""SQLUser"".""Vw_BillDetailAc"" ""Vw_BillDetailAc"" INNER JOIN ""SQLUser"".""ARC_ItmMast"" ""ARC_ItmMast"" ON ""Vw_BillDetailAc"".""ARCIM_RowId"" = ""ARC_ItmMast"".""ARCIM_RowId""
              WHERE  ""Vw_BillDetailAc"".""PAPMI_No"" = ?
                     AND ""Vw_BillDetailAc"".""OEORI_Billed"" in ('B', 'I', 'P')

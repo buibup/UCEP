@@ -134,15 +134,14 @@ namespace UCEP.Controllers
       //var fsTemplateListDrug = Helper.DTToFsTemplateList(dtDrug, hos.GetHospitalCode().ToString());
 
       var queryFSDrug = QueryString.GetPatientOrderFSDrug(hn, dtmFrom, dtmTo);
-      var dtFSDrug = InterSystemsDA.DTBindDataCommandWihDictionary(queryFSDrug.Item1, Constants.Chache89, queryFSDrug.Item2);
-      var fsTemplateListFSDrug = Helper.DTToFsTemplateList(dtFSDrug, hos.GetHospitalCode().ToString());
+      var FsDrugTemplateList = InterSystemsDA.BindDataFsDrugTemplateList(queryFSDrug.Item1, Constants.Chache89, queryFSDrug.Item2, hos.GetHospitalCode().ToString());
 
       if (matchAll)
       {
-        fsTemplateListFSDrug = fsTemplateListFSDrug.Where(d => !string.IsNullOrEmpty(d.FSCodeOrTMTCode)).ToList();
+        FsDrugTemplateList = FsDrugTemplateList.Where(d => !string.IsNullOrEmpty(d.FSCodeOrTMTCode)).ToList();
       }
 
-      GlobalConfig.FsTemplateList = fsTemplateListFSDrug;
+      GlobalConfig.FsTemplateList = FsDrugTemplateList;
 
 
 

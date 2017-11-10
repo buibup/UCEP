@@ -2,7 +2,7 @@
 
 namespace UCEP.Models
 {
-    public class FsTemplate
+    public class FsDrugTemplate
     {
         public string UseDate { get; set; }
         [MaxLength(50)]

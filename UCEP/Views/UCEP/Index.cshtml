@@ -7,76 +7,76 @@
 
 
 <style type="text/css">
-  /* Generic Styling, for Desktops/Laptops */
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  /* Zebra striping */
-  tr:nth-of-type(odd) {
-    background: #eee;
-  }
-
-  th {
-    background: #333;
-    color: white;
-    font-weight: bold;
-  }
-
-  td, th {
-    padding: 6px;
-    border: 1px solid #ccc;
-    text-align: left;
-  }
-  /*
-  Max width before this PARTICULAR table gets nasty
-  This query will take effect for any screen smaller than 760px
-  and also iPads specifically.
-  */
-  @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
-
-    /* Force table to not be like tables anymore */
-    table, thead, tbody, th, td, tr {
-      /*display: block;*/
-    }
-
-      /* Hide table headers (but not display: none;, for accessibility) */
-      thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+      /* Generic Styling, for Desktops/Laptops */
+      table {
+          width: 100%;
+          border-collapse: collapse;
+      }
+      /* Zebra striping */
+      tr:nth-of-type(odd) {
+          background: #eee;
       }
 
-    tr {
-      border: 1px solid #ccc;
-    }
-
-    td {
-      /* Behave  like a "row" */
-      border: none;
-      border-bottom: 1px solid #eee;
-      position: relative;
-      padding-left: 50%;
-    }
-
-      td:before {
-        /* Now like a table header */
-        position: absolute;
-        /* Top/left values mimic padding */
-        top: 6px;
-        left: 6px;
-        width: 45%;
-        padding-right: 10px;
-        white-space: nowrap;
+      th {
+          background: #333;
+          color: white;
+          font-weight: bold;
       }
 
+      td, th {
+          padding: 6px;
+          border: 1px solid #ccc;
+          text-align: left;
+      }
       /*
-   Label the data
-   */
-      td:before {
-        content: attr(data-title);
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+      @@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+
+          /* Force table to not be like tables anymore */
+          table, thead, tbody, th, td, tr {
+              /*display: block;*/
+          }
+
+              /* Hide table headers (but not display: none;, for accessibility) */
+              thead tr {
+                  position: absolute;
+                  top: -9999px;
+                  left: -9999px;
+              }
+
+          tr {
+              border: 1px solid #ccc;
+          }
+
+          td {
+              /* Behave  like a "row" */
+              border: none;
+              border-bottom: 1px solid #eee;
+              position: relative;
+              padding-left: 50%;
+          }
+
+              td:before {
+                  /* Now like a table header */
+                  position: absolute;
+                  /* Top/left values mimic padding */
+                  top: 6px;
+                  left: 6px;
+                  width: 45%;
+                  padding-right: 10px;
+                  white-space: nowrap;
+              }
+
+              /*
+     Label the data
+     */
+              td:before {
+                  content: attr(data-title);
+              }
       }
-  }
 </style>
 
 <h2>List Item @GlobalConfig.Hospital.Item2</h2>
@@ -84,108 +84,123 @@
 <span id="spanHos"></span>
 
 <p>
-  @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create")
 </p>
+
 <p>
-  @using (Html.BeginForm("Index", "UCEP", FormMethod.Post, new { id = "dropdownHos", name = "dropdownHos" }))
-  {
-    @Html.DropDownList("hospital",
+    @using (Html.BeginForm("Index", "UCEP", FormMethod.Post, new { id = "dropdownCatalogue", name = "dropdownCatalogue" }))
+    {
+        @Html.DropDownList("catalogue",
+                           new SelectList(Enum.GetValues(typeof(Enums.Catalogue))),
+                           "---Select Catalogue---",
+                           new { @class = "form-control", onchange = "SelectedIndexCatalogueChanged()" })
+    }
+</p>
+
+<p>
+    @using (Html.BeginForm("Index", "UCEP", FormMethod.Post, new { id = "dropdownHos", name = "dropdownHos" }))
+    {
+        @Html.DropDownList("hospital",
                       new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
                       "---Select Hospital---",
                       new { @class = "form-control", onchange = "SelectedIndexChanged()" })
-  }
+    }
 </p>
 @using (Html.BeginForm())
 {
-  <p>
-    FSCodeHos: @Html.TextBox("SearchString") <br />
-    <input type="submit" value="Filter" />
-  </p>
+    <p>
+        FSCodeHos: @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Filter" />
+    </p>
 }
 <table class="table">
-  <tr>
-    <th>
-      @Html.DisplayNameFor(model => model.HospitalCode)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.FSCodeNIEMS)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.FSCodeHos)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Category)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Meaning)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Unit)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Price)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.EffectiveDate)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.Status)
-    </th>
-    <th>
-      @Html.DisplayNameFor(model => model.ApprovalDate)
-    </th>
-    @*<th></th>*@
-  </tr>
-
-  @foreach (var item in Model)
-      {
     <tr>
-      <td>
-        @Html.DisplayFor(modelItem => item.HospitalCode)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.FSCodeNIEMS)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.FSCodeHos)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Category)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Meaning)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Unit)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Price)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.EffectiveDate)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.Status)
-      </td>
-      <td>
-        @Html.DisplayFor(modelItem => item.ApprovalDate)
-      </td>
-      @*<td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>*@
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FSCodeNIEMS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FSCodeHos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Meaning)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EffectiveDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ApprovalDate)
+        </th>
+        @*<th></th>*@
     </tr>
-  }
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HospitalCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FSCodeNIEMS)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FSCodeHos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meaning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EffectiveDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovalDate)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+                </td>*@
+        </tr>
+    }
 
 </table>
 
 
 <script type="text/javascript">
 
-  function SelectedIndexChanged() {
-    //Form post
-    document.dropdownHos.submit();
-  }
-</script>
+    function SelectedIndexChanged() {
+        //Form post
+        document.dropdownHos.submit();
+    }
 
+    function SelectedIndexCatalogueChanged() {
+        //Form post
+        document.dropdownCatalogue.submit();
+    }
+</script>
