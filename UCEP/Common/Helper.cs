@@ -70,7 +70,7 @@ namespace UCEP.Common
 
                 model = new DrugCatalogue()
                 {
-                    HospDrugCode = row[(int)DrugCatalogueEnum.HOSPDRUGCODE].ToString(),
+                    HospDrugCode = row[(int)DrugCatalogueEnum.HospDrugCode].ToString(),
                     PRODUCTCAT = int.Parse(row[(int)DrugCatalogueEnum.PRODUCTCAT].ToString()),
                     TMTID = row[(int)DrugCatalogueEnum.TMTID].ToString(),
                     SPECPREP = row[(int)DrugCatalogueEnum.SPECPREP].ToString(),

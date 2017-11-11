@@ -18,37 +18,56 @@ namespace UCEP.Controllers
         //[OutputCache(Duration = 60)]
         public ActionResult Index(string searchString, string catalogue, string hospital)
         {
-            var models = new List<FsCatalogue>();
+            dynamic models = null;
+
+            // clear list
+            GlobalConfig.Clear();
+
+            if (!string.IsNullOrEmpty(hospital))
+            {
+                hospital.SetHospital();
+                ViewData["hospital"] = GlobalConfig.Hospital.Item2;
+            }
 
             if (!string.IsNullOrEmpty(catalogue))
             {
                 catalogue.SetCatalogue();
                 ViewData["catalogue"] = catalogue;
 
-                if (!string.IsNullOrEmpty(hospital))
+                if (catalogue == Catalogue.FSCatalogue.ToString())
                 {
-                    hospital.SetHospital();
-                    ViewData["hospital"] = GlobalConfig.Hospital.Item2;
+                    ViewBag.Filter = "FSCodeNIEMS Or FSCodeHos";
+                    GlobalConfig.FsCatalogueList = GlobalConfig.Connection.GetAllFsCatalogueByHospitalCode(GlobalConfig.Hospital.Item1);
+                    models = GlobalConfig.FsCatalogueList;
+
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        var model = GlobalConfig.Connection.GetFsCatalogueFromGlobalConfig(searchString);
+                        GlobalConfig.FsCatalogueList.Clear();
+                        GlobalConfig.FsCatalogueList.Add(model);
+                    }
+
+                    ViewData["FsCatalogueList"] = GlobalConfig.FsCatalogueList;
+                }
+                else if (catalogue == Catalogue.DrugCatalogue.ToString())
+                {
+                    ViewBag.Filter = "HospDrugCode Or TMTID";
+                    GlobalConfig.DrugCatalogueList = GlobalConfig.Connection.GetAllDrugCatalogue();
+                    models = GlobalConfig.DrugCatalogueList;
+
+                    if (!string.IsNullOrEmpty(searchString))
+                    {
+                        var model = GlobalConfig.Connection.GetDrugCatalogueFromGlobalConfig(searchString);
+                        GlobalConfig.DrugCatalogueList.Clear();
+                        GlobalConfig.DrugCatalogueList.Add(model);
+                    }
+
+                    ViewData["DrugCatalogueList"] = GlobalConfig.DrugCatalogueList;
                 }
             }
 
 
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                var model = GlobalConfig.Connection.GetFsCatalogueFromGlobalConfig(searchString);
-                if (model != null)
-                {
-                    models.Add(model);
-                }
-            }
-            else
-            {
-                GlobalConfig.FsCatalogueList = GlobalConfig.Connection.GetAllFsCatalogueByHospitalCode(GlobalConfig.Hospital.Item1);
-                models = GlobalConfig.FsCatalogueList;
-            }
-
-            return View(models);
+            return View();
         }
 
         // GET: UCEP/Details/5

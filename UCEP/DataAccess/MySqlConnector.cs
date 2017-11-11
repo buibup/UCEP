@@ -25,7 +25,7 @@ namespace UCEP.DataAccess
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }
@@ -149,6 +149,21 @@ namespace UCEP.DataAccess
             }
         }
 
+        public DrugCatalogue GetDrugCatalogueFromGlobalConfig(string filter)
+        {
+            var data = new DrugCatalogue();
+            if (GlobalConfig.DrugCatalogueList.Count > 0)
+            {
+                data = GlobalConfig.DrugCatalogueList.Where(d => d.HospDrugCode == filter || d.TMTID == filter).SingleOrDefault();
+            }
+            else
+            {
+                data = null;
+            }
+
+            return data;
+        }
+
         public FsCatalogue GetFsCatalogue(string FSCodeHos)
         {
             if (GlobalConfig.FsCatalogueList.Count > 0)
@@ -197,12 +212,12 @@ namespace UCEP.DataAccess
             }
         }
 
-        public FsCatalogue GetFsCatalogueFromGlobalConfig(string FSCodeHos)
+        public FsCatalogue GetFsCatalogueFromGlobalConfig(string filter)
         {
             var data = new FsCatalogue();
             if (GlobalConfig.FsCatalogueList.Count > 0)
             {
-                data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).SingleOrDefault();
+                data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == filter || d.FSCodeNIEMS == filter).SingleOrDefault();
             }
             else
             {

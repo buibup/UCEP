@@ -4,6 +4,7 @@ namespace UCEP.Models
 {
     public class FsDrugTemplate
     {
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd HH:mm:ss}")]
         public string UseDate { get; set; }
         [MaxLength(50)]
         public string FSCodeOrTMTCode { get; set; }

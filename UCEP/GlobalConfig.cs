@@ -37,5 +37,13 @@ namespace UCEP
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
+
+        public static void Clear()
+        {
+            FsTemplateList = new List<FsDrugTemplate>();
+            FsCatalogueList = new List<FsCatalogue>();
+            DrugCatalogueList = new List<DrugCatalogue>();
+            Catalogue = "";
+        }
     }
 }

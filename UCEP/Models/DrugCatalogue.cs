@@ -1,10 +1,11 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace UCEP.Models
 {
     public enum DrugCatalogueEnum
     {
-        HOSPDRUGCODE
+        HospDrugCode
         , PRODUCTCAT
         , TMTID
         , SPECPREP
@@ -31,7 +32,7 @@ namespace UCEP.Models
         , ISED_STATUS
     }
 
-    public class DrugCatalogue 
+    public class DrugCatalogue
     {
         public string HospDrugCode { get; set; }
         public int PRODUCTCAT { get; set; }
@@ -51,11 +52,15 @@ namespace UCEP.Models
         public string PACKSIZE { get; set; }
         public string PACKPRICE { get; set; }
         public string UPDATEFLAG { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DATECHANGE { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DATEUPDATE { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DATEEFFECTIVE { get; set; }
         public string ISED_APPROVED { get; set; }
         public string NDC24_APPROVED { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? DATE_APPROVED { get; set; }
         public string ISED_STATUS { get; set; }
     }
