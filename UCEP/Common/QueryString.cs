@@ -94,8 +94,7 @@ namespace UCEP.Common
  		            ""Vw_BillDetailAc"".""ARCIM_Code"" ""HospitalCode"",
  		            ""Vw_BillDetailAc"".""ARCIM_Abbrev"" ""Mean"",
  		            ""Vw_BillDetailAc"".""OEORI_PhQtyOrd"" ""Unit"",
- 		            ISNULL(""Vw_BillDetailAc"".""ITM_InsCompanyShare"", 0) + ISNULL(""Vw_BillDetailAc"".""ITM_PatientShare"", 0) + ISNULL(""Vw_BillDetailAc"".""ITM_SpecialistSurcharge"", 0) ""PriceTotal""
- 		            ,""Vw_BillDetailAc"".""ITM_LineTotal""
+ 		            sum(""Vw_BillDetailAc"".""ITM_LineTotal"") PriceTotal
                     ,Vw_BillDetailAc.ARCBG_Code
              FROM   ""SQLUser"".""Vw_BillDetailAc"" ""Vw_BillDetailAc"" INNER JOIN ""SQLUser"".""ARC_ItmMast"" ""ARC_ItmMast"" ON ""Vw_BillDetailAc"".""ARCIM_RowId"" = ""ARC_ItmMast"".""ARCIM_RowId""
              WHERE  ""Vw_BillDetailAc"".""PAPMI_No"" = ?
@@ -112,6 +111,12 @@ namespace UCEP.Common
 	                    ) <= TO_TIMESTAMP( ? ,'YYYY-MM-DD HH24:MI:SS')
 	                )
 
+              Group by  ""Vw_BillDetailAc"".""OEORI_SttDat"",
+                        ""Vw_BillDetailAc"".""OEORI_SttTim"",
+                        ""Vw_BillDetailAc"".""ARCIM_Code"",
+                        ""Vw_BillDetailAc"".""ARCIM_Abbrev"",
+                        ""Vw_BillDetailAc"".""OEORI_PhQtyOrd"",
+                        ""Vw_BillDetailAc"".""ARCBG_Code""
             ";
 
             var dFrom = $"{dtmFrom.Year}-{dtmFrom.ToString("MM-dd HH:mm:ss")}"; 
