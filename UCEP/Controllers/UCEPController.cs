@@ -44,7 +44,7 @@ namespace UCEP.Controllers
                     {
                         var model = GlobalConfig.Connection.GetFsCatalogueFromGlobalConfig(searchString);
                         GlobalConfig.FsCatalogueList.Clear();
-                        GlobalConfig.FsCatalogueList.Add(model);
+                        GlobalConfig.FsCatalogueList = model;
                     }
 
                     ViewData["FsCatalogueList"] = GlobalConfig.FsCatalogueList;
@@ -59,7 +59,7 @@ namespace UCEP.Controllers
                     {
                         var model = GlobalConfig.Connection.GetDrugCatalogueFromGlobalConfig(searchString);
                         GlobalConfig.DrugCatalogueList.Clear();
-                        GlobalConfig.DrugCatalogueList.Add(model);
+                        GlobalConfig.DrugCatalogueList = model;
                     }
 
                     ViewData["DrugCatalogueList"] = GlobalConfig.DrugCatalogueList;

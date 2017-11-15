@@ -9,8 +9,8 @@ namespace UCEP.DataAccess
         bool AddFsCatalogues(List<FsCatalogue> models);
         bool AddDrugCatalogues(List<DrugCatalogue> models);
         FsCatalogue GetFsCatalogue(string FSCodeHos);
-        FsCatalogue GetFsCatalogueFromGlobalConfig(string filter);
-        DrugCatalogue GetDrugCatalogueFromGlobalConfig(string filter);
+        List<FsCatalogue> GetFsCatalogueFromGlobalConfig(string filter);
+        List<DrugCatalogue> GetDrugCatalogueFromGlobalConfig(string filter);
         FsCatalogue GetFsCatalogue(string FSCodeHos, string HospitalCode);
         DrugCatalogue GetDrugCatalogue(string DrugCodeHos, string HospitalCode);
         List<FsCatalogue> GetAllFsCatalogue();

@@ -1,4 +1,4 @@
-﻿using InterSystems.Data.CacheClient;
+using InterSystems.Data.CacheClient;
 using PatientEmpathy.Common;
 using System;
 using System.Collections.Generic;
@@ -83,7 +83,7 @@ namespace CRMWebApi.DA
 
                                     UseDate = $"{useDate} {useTime}",
                                     FSCodeOrTMTCode = CodeNIEMS,
-                                    HospitalCode = hosCode,
+                                    HospitalCode = orderItemCode,
                                     Category = Category,
                                     Mean = reader["Mean"].ToString(),
                                     Unit = reader["Unit"].ToString(),
@@ -106,7 +106,7 @@ namespace CRMWebApi.DA
 
                                     UseDate = $"{useDate} {useTime}",
                                     FSCodeOrTMTCode = CodeNIEMS,
-                                    HospitalCode = hosCode,
+                                    HospitalCode = orderItemCode,
                                     Category = Category,
                                     Mean = reader["Mean"].ToString(),
                                     Unit = reader["Unit"].ToString(),

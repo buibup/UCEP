@@ -175,7 +175,7 @@ namespace UCEP.Common
 
                         UseDate = $"{useDate} {useTime}",
                         FSCodeOrTMTCode = CodeNIEMS,
-                        HospitalCode = hosCode,
+                        HospitalCode = orderItemCode,
                         Category = Category,
                         Mean = row["Mean"].ToString(),
                         Unit = row["Unit"].ToString(),
@@ -198,7 +198,7 @@ namespace UCEP.Common
 
                         UseDate = $"{useDate} {useTime}",
                         FSCodeOrTMTCode = CodeNIEMS,
-                        HospitalCode = hosCode,
+                        HospitalCode = orderItemCode,
                         Category = Category,
                         Mean = row["Mean"].ToString(),
                         Unit = row["Unit"].ToString(),

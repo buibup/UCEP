@@ -63,7 +63,7 @@ namespace UCEP.DataAccess
 
             using (IDbConnection db = new MySqlConnection(conString))
             {
-                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
+                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).FirstOrDefault();
             }
 
             return model;
@@ -83,7 +83,7 @@ namespace UCEP.DataAccess
 
             using (IDbConnection db = new MySqlConnection(conString))
             {
-                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
+                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).FirstOrDefault();
             }
 
             return model;
@@ -144,17 +144,17 @@ namespace UCEP.DataAccess
 
                 using (IDbConnection db = new MySqlConnection(conString))
                 {
-                    return db.Query<DrugCatalogue>(query, new { HospDrugCode = HospDrugCode }).SingleOrDefault();
+                    return db.Query<DrugCatalogue>(query, new { HospDrugCode = HospDrugCode }).FirstOrDefault();
                 }
             }
         }
 
-        public DrugCatalogue GetDrugCatalogueFromGlobalConfig(string filter)
+        public List<DrugCatalogue> GetDrugCatalogueFromGlobalConfig(string filter)
         {
-            var data = new DrugCatalogue();
+            var data = new List<DrugCatalogue>();
             if (GlobalConfig.DrugCatalogueList.Count > 0)
             {
-                data = GlobalConfig.DrugCatalogueList.Where(d => d.HospDrugCode == filter || d.TMTID == filter).SingleOrDefault();
+                data = GlobalConfig.DrugCatalogueList.Where(d => d.HospDrugCode == filter || d.TMTID == filter).ToList();
             }
             else
             {
@@ -168,7 +168,7 @@ namespace UCEP.DataAccess
         {
             if (GlobalConfig.FsCatalogueList.Count > 0)
             {
-                var data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).SingleOrDefault();
+                var data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).FirstOrDefault();
                 return data;
             }
             else
@@ -177,7 +177,7 @@ namespace UCEP.DataAccess
 
                 using (IDbConnection db = new MySqlConnection(conString))
                 {
-                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos }).SingleOrDefault();
+                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos }).FirstOrDefault();
                 }
             }
         }
@@ -188,7 +188,7 @@ namespace UCEP.DataAccess
 
             using (IDbConnection db = new MySqlConnection(conString))
             {
-                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).SingleOrDefault();
+                model = db.Query<FsCatalogue>(DbQuery.GetFsCatalogue(), new { Id = id }).FirstOrDefault();
             }
 
             return model;
@@ -207,17 +207,17 @@ namespace UCEP.DataAccess
 
                 using (IDbConnection db = new MySqlConnection(conString))
                 {
-                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos, HospitalCode = HospitalCode }).SingleOrDefault();
+                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos, HospitalCode = HospitalCode }).FirstOrDefault();
                 }
             }
         }
 
-        public FsCatalogue GetFsCatalogueFromGlobalConfig(string filter)
+        public List<FsCatalogue> GetFsCatalogueFromGlobalConfig(string filter)
         {
-            var data = new FsCatalogue();
+            var data = new List<FsCatalogue>();
             if (GlobalConfig.FsCatalogueList.Count > 0)
             {
-                data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == filter || d.FSCodeNIEMS == filter).SingleOrDefault();
+                data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == filter || d.FSCodeNIEMS == filter).ToList();
             }
             else
             {
