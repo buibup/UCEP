@@ -94,7 +94,7 @@ namespace UCEP.Controllers
 
           reader.Close();
 
-          return RedirectToAction("Upload", "Home");
+          return RedirectToAction("ViewDataUpload", "Home", new { catalogue = catalogue });
           //return RedirectToAction("Index", "UCEP");
         }
         else
@@ -102,6 +102,12 @@ namespace UCEP.Controllers
           ModelState.AddModelError("File", "Please Upload Your file");
         }
       }
+      return View();
+    }
+
+    public ActionResult ViewDataUpload(string catalogue)
+    {
+      ViewData["Catalogue"] = catalogue;
       return View();
     }
 

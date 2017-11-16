@@ -315,6 +315,7 @@
     <Content Include="Views\UCEP\Delete.cshtml" />
     <Content Include="Views\UCEP\Edit.cshtml" />
     <Content Include="Views\Home\Export.cshtml" />
+    <Content Include="Views\Home\ViewDataUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
