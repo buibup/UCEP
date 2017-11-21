@@ -1,0 +1,171 @@
+@model IEnumerable<UCEP.Models.DrugCatalogue>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HospDrugCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRODUCTCAT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TMTID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SPECPREP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GENERICNAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TRADENAME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DFSCODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DOSAGEFORM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.STRENGTH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CONTENT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UNITPRICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DISTRIBUTOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MANUFACTURER)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NDC24)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKSIZE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PACKPRICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UPDATEFLAG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATECHANGE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEUPDATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATEEFFECTIVE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISED_APPROVED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NDC24_APPROVED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DATE_APPROVED)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ISED_STATUS)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HospDrugCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRODUCTCAT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TMTID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SPECPREP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GENERICNAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TRADENAME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DFSCODE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DOSAGEFORM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.STRENGTH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CONTENT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UNITPRICE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DISTRIBUTOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MANUFACTURER)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISED)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NDC24)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PACKSIZE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PACKPRICE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UPDATEFLAG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATECHANGE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEUPDATE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATEEFFECTIVE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISED_APPROVED)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NDC24_APPROVED)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DATE_APPROVED)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ISED_STATUS)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>*@
+    </tr>
+}
+
+</table>

@@ -316,6 +316,8 @@
     <Content Include="Views\UCEP\Edit.cshtml" />
     <Content Include="Views\Home\Export.cshtml" />
     <Content Include="Views\Home\ViewDataUpload.cshtml" />
+    <Content Include="Views\Shared\_FSCatalogue.cshtml" />
+    <Content Include="Views\Shared\_DrugCatalogue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
