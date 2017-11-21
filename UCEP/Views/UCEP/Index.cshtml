@@ -97,11 +97,11 @@
                            new { @class = "form-control" })
   <br />
 
-        @Html.DropDownList("hospital",
+  @Html.DropDownList("hospital",
                       new SelectList(Enum.GetValues(typeof(Enums.Hospital))),
                       "---Select Hospital---",
                       new { @class = "form-control", onchange = "SelectedIndexChanged()" })
-        <br />
+  <br />
 
         <p>
           @Html.TextBox("SearchString", ViewData.TemplateInfo.FormattedModelValue, new { @class = "form-control", placeholder = ViewBag.Filter })
@@ -109,8 +109,12 @@
         </p>
 }
 
-
-
+@*<form method="get" action="@Url.Action("Index")"
+      data-ucep-ajax="true" data-ucep-target="#ucepList">
+  <input type="radio" value=""/>
+  <input type="search" name="searchTerm" data-ucep-autocomplete="@Url.Action("Autocomplete")" />
+  <input type="submit" value="Search"/>
+</form>*@
 
 @if (GlobalConfig.Catalogue == Enums.Catalogue.FSCatalogue.ToString())
 {

@@ -144,11 +144,9 @@ namespace UCEP.Controllers
       // order by UseDate
       var result = FsDrugTemplateList.OrderBy(a => string.IsNullOrEmpty(a.UseDate) ? (DateTime?)null : DateTime.ParseExact(a.UseDate, "yyyy-MM-dd HH:mm:ss", null)).ToList();
 
-      GlobalConfig.FsTemplateList = result;
+      //GlobalConfig.FsTemplateList = result;
 
-
-
-      return RedirectToAction("Export", "Home");
+      return View("Export", result);
     }
 
     public ActionResult Export()
@@ -158,11 +156,13 @@ namespace UCEP.Controllers
       return View(GlobalConfig.FsTemplateList);
     }
 
+    [HttpPost]
     public ActionResult DownloadCSV()
     {
+      var dataList = ViewData["FsDrugTemplate"] as List<FsDrugTemplate>;
       var sb = new StringBuilder();
       sb.AppendLine($"use_date,F/S code หรือ TMT Code,Hospital code,category,mean,unit,price_total");
-      foreach (var data in GlobalConfig.FsTemplateList)
+      foreach (var data in dataList ?? new List<FsDrugTemplate>())
       {
         sb.AppendLine($"{data.UseDate},{data.FSCodeOrTMTCode},{data.HospitalCode},{data.Category},{data.Mean.Replace(",", " ")},{data.Unit},{data.PriceTotal}");
       }

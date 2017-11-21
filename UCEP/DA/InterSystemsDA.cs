@@ -58,11 +58,6 @@ namespace CRMWebApi.DA
               string orderItemCode = reader["HospitalCode"].ToString();
               decimal price = 0;
 
-              if (orderItemCode == "02C004")
-              {
-                var test = reader["ARCBG_Code"].ToString().Trim();
-              }
-
               var d = Convert.ToDateTime(reader["OEORI_SttDat"].ToString());
               var t = Convert.ToDateTime(reader["OEORI_SttTim"].ToString());
 
