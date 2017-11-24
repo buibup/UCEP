@@ -133,19 +133,11 @@ namespace UCEP.DataAccess
 
         public DrugCatalogue GetDrugCatalogue(string HospDrugCode, string HospitalCode)
         {
-            if (GlobalConfig.FsCatalogueList.Count > 0)
-            {
-                var data = GlobalConfig.DrugCatalogueList.Find(d => d.HospDrugCode == HospDrugCode);
-                return data;
-            }
-            else
-            {
-                var query = "SELECT * FROM `ucep`.`DrugCatalogues` WHERE HospDrugCode = @HospDrugCode ; ;";
+            var query = "SELECT * FROM `ucep`.`DrugCatalogues` WHERE HospDrugCode = @HospDrugCode ; ;";
 
-                using (IDbConnection db = new MySqlConnection(conString))
-                {
-                    return db.Query<DrugCatalogue>(query, new { HospDrugCode = HospDrugCode }).FirstOrDefault();
-                }
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                return db.Query<DrugCatalogue>(query, new { HospDrugCode = HospDrugCode }).FirstOrDefault();
             }
         }
 
@@ -166,19 +158,11 @@ namespace UCEP.DataAccess
 
         public FsCatalogue GetFsCatalogue(string FSCodeHos)
         {
-            if (GlobalConfig.FsCatalogueList.Count > 0)
-            {
-                var data = GlobalConfig.FsCatalogueList.Where(d => d.FSCodeHos == FSCodeHos).FirstOrDefault();
-                return data;
-            }
-            else
-            {
-                var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos ;";
+            var query = "SELECT * FROM ucep.FsCatalogues where FSCodeHos = @FSCodeHos ;";
 
-                using (IDbConnection db = new MySqlConnection(conString))
-                {
-                    return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos }).FirstOrDefault();
-                }
+            using (IDbConnection db = new MySqlConnection(conString))
+            {
+                return db.Query<FsCatalogue>(query, new { FSCodeHos = FSCodeHos }).FirstOrDefault();
             }
         }
 
