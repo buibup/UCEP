@@ -1,61 +1,73 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8" />
-  @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
-  <title>@ViewBag.Title - UCEP</title>
-  @Styles.Render("~/Content/themes/base/css")
-  @Styles.Render("~/Content/css")
-  @Scripts.Render("~/bundles/modernizr")
-  <link href="~/Content/Site.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">*@
+    <title>@ViewBag.Title - UCEP</title>
+    @Styles.Render("~/Content/themes/base/css")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/Site.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        @Html.ActionLink("UCEP", "Index", "UCEP", new { area = "" }, new { @class = "navbar-brand" })
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li>@Html.ActionLink("Upload File", "Upload", "Home")</li>
-          <li>@Html.ActionLink("Export CSV", "ExportCSV", "Home")</li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          @*<li><a id="registerLink" href="/LT/Account/Register">Register</a></li>*@
-          @*<li><a id="loginLink" href="/LT/Account/Login">Log in</a></li>*@
-          @*For when the navbar is NOT collapsed*@
-          @*<li class="collapse-hidden">
-              <ul class="nav navbar-nav collapse-hidden">
-                <li class="dropdown">
-                  <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">@hos<b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li>@Html.ActionLink("SVH", "Index", "UCEP", new { site = "SVH" }, null)</li>
-                    <li><a>@Html.ActionLink("SNH", "Index", "UCEP", new { site = "SNH" }, null)</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>*@
-        </ul>
-      </div>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("UCEP", "Index", "UCEP", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Upload File", "Upload", "Home")</li>
+                    <li>@Html.ActionLink("Export CSV", "ExportCSV", "Home")</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li><a id="registerLink" href="/LT/Account/Register">Register</a></li>*@
+                    @*<li><a id="loginLink" href="/LT/Account/Login">Log in</a></li>*@
+                    @*For when the navbar is NOT collapsed*@
+                    @*<li class="collapse-hidden">
+                          <ul class="nav navbar-nav collapse-hidden">
+                            <li class="dropdown">
+                              <a class="dropdown-toggle" style="margin-right: 5px;" href="#" data-toggle="dropdown">@hos<b class="caret"></b></a>
+                              <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("SVH", "Index", "UCEP", new { site = "SVH" }, null)</li>
+                                <li><a>@Html.ActionLink("SNH", "Index", "UCEP", new { site = "SNH" }, null)</a></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>*@
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="container body-content">
-    @RenderBody()
-    <hr />
-    <footer>
-      <p>&copy; @DateTime.Now.Year - UCEP</p>
-    </footer>
-  </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            @*<p>Date: <input type="text" id="datepicker"></p>*@
+            <p>&copy; @DateTime.Now.Year - UCEP</p>
+        </footer>
+    </div>
 
+    
 
-  @Scripts.Render("~/bundles/ucep")
-  @Scripts.Render("~/bundles/bootstrap")
-  @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/ucep")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            $("#Date").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+            $("#Date").datepicker("option", "dateFormat", "yy-mm-dd");
+        });
+    </script>
+
 </body>
 </html>
