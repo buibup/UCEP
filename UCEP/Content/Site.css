@@ -23,4 +23,6 @@ textarea {
   max-width: 280px;
 }
 
-
+.ui-timepicker-wrapper{
+    width:20em;
+}

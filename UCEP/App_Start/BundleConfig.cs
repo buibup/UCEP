@@ -12,6 +12,7 @@ namespace UCEP
                         "~/Scripts/jquery-ui-{version}.js",
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/jquery.validate*",
+                        "~/Scripts/jquery.timepicker*",
                         "~/Scripts/ucep.js"
                         ));
 
@@ -32,7 +33,8 @@ namespace UCEP
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/jquery.timepicker.css",
+                      "~/Content/Site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
           "~/Content/themes/base/*.css"));
