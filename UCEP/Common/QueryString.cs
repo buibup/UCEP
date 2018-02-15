@@ -93,7 +93,7 @@ namespace UCEP.Common
                     ""Vw_BillDetailAc"".""OEORI_SttTim"",
  		            ""Vw_BillDetailAc"".""ARCIM_Code"" ""HospitalCode"",
  		            ""Vw_BillDetailAc"".""ARCIM_Abbrev"" ""Mean"",
- 		            ""Vw_BillDetailAc"".""OEORI_PhQtyOrd"" ""Unit"",
+ 		            sum(""Vw_BillDetailAc"".""OEORI_PhQtyOrd"") ""Unit"",
  		            sum(""Vw_BillDetailAc"".""ITM_LineTotal"") PriceTotal
                     ,Vw_BillDetailAc.ARCBG_Code
              FROM   ""SQLUser"".""Vw_BillDetailAc"" ""Vw_BillDetailAc"" INNER JOIN ""SQLUser"".""ARC_ItmMast"" ""ARC_ItmMast"" ON ""Vw_BillDetailAc"".""ARCIM_RowId"" = ""ARC_ItmMast"".""ARCIM_RowId""
